@@ -1,0 +1,130 @@
+C:\Users\Admin\Documents\GitHub\Travian-Solo\Installer\api\install-background.php:516: $serviceScript = "#!/usr/bin/php -q\n<?php\nrequire __DIR__ . \"/env.php\";\nif(IS_DEV){\n    require(\"/travian/main_script_dev/include/AutomationEngine.php\");\n} else {\n    require(\"/travian/main_script/include/AutomationEngine.php\");\n}\n";
+C:\Users\Admin\Documents\GitHub\Travian-Solo\mailNotify\include\bootstrap.php:13: require($location);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\mailNotify\include\config.php:5: require($path);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\mailNotify\mailman.php:4: require("include/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\mailNotify\notification.php:3: require("include/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\copyable\include\Automation.php:5: require("/travian/main_script_dev/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\copyable\include\Automation.php:7: require("/travian/main_script/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\Controllers\BackupsCtrl.php:67: require(INCLUDE_PATH . "/update.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\Controllers\GiftGoldPackageCodeGeneratorCtrl.php:2: require("GoldPackageCodeGeneratorCtrl.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\Core\Dispatcher.php:9: require("Template.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\Core\Dispatcher.php:91: require($this->getHandleFileLocation($handler));
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\bootstrap.php:3: require("Core" . DIRECTORY_SEPARATOR . "Dispatcher.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\admin\include\bootstrap.php:4: require("Core" . DIRECTORY_SEPARATOR . "AdminLog.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\config\config.after.php:82: require(CONFIG_CUSTOM_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\Core\Database\ServerDB.php:15: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\Core\Autoloader.php:21: require($fullpath);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixAllResources.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixBuildings.php:6: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixCropPercents.php:8: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixHeroItemHealth.php:10: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixHeroPoints.php:6: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixInventoryPlaceIds.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixPopCp.php:12: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixStorages.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\fixes\fixUpkeeps.php:8: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\resources\Templates\reports\report_layout.php:120: <?php require(TEMPLATES_PATH . $vars['includeFile'] . ".php"); ?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\resources\Templates\verify\segment.php:11: <?php require("newProgress.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\resources\Templates\verify\segment.php:13: <?php require("inProgress.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\resources\Templates\verify\segment.php:15: <?php require("limitations.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\resources\View\PHPBatchView.php:39: require($this->filename);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\AutomationEngine.php:10: require(__DIR__ . "/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\bootstrap.php:70: require(INCLUDE_PATH . "config/config.after.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\config.php:6: require(GLOBAL_CONFIG_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\config.php:8: require(CONNECTION_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\mainInclude.php:146: require(__DIR__ . "/admin/include/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script\include\mainInclude.php:150: require(__DIR__ . "/detect.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\copyable\include\Automation.php:5: require("/travian/main_script_dev/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\copyable\include\Automation.php:7: require("/travian/main_script/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\Controllers\BackupsCtrl.php:67: require(INCLUDE_PATH . "/update.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\Controllers\GiftGoldPackageCodeGeneratorCtrl.php:2: require("GoldPackageCodeGeneratorCtrl.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\Core\Dispatcher.php:9: require("Template.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\Core\Dispatcher.php:91: require($this->getHandleFileLocation($handler));
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\bootstrap.php:3: require("Core" . DIRECTORY_SEPARATOR . "Dispatcher.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\admin\include\bootstrap.php:4: require("Core" . DIRECTORY_SEPARATOR . "AdminLog.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\config\config.after.php:82: require(CONFIG_CUSTOM_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\Core\Database\ServerDB.php:15: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\Core\Autoloader.php:21: require($fullpath);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixAllResources.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixBuildings.php:6: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixCropPercents.php:8: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixHeroItemHealth.php:10: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixHeroPoints.php:6: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixInventoryPlaceIds.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixPopCp.php:12: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixStorages.php:7: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\fixes\fixUpkeeps.php:8: require_once(__DIR__ . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR . "bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\resources\Templates\reports\report_layout.php:120: <?php require(TEMPLATES_PATH . $vars['includeFile'] . ".php"); ?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\resources\Templates\verify\segment.php:11: <?php require("newProgress.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\resources\Templates\verify\segment.php:13: <?php require("inProgress.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\resources\Templates\verify\segment.php:15: <?php require("limitations.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\resources\View\PHPBatchView.php:39: require($this->filename);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\AutomationEngine.php:10: require(__DIR__ . "/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\bootstrap.php:74: require(INCLUDE_PATH . "config/config.after.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\config.php:6: require(GLOBAL_CONFIG_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\config.php:8: require(CONNECTION_FILE);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\mainInclude.php:153: require(__DIR__ . "/admin/include/bootstrap.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\main_script_dev\include\mainInclude.php:157: require(__DIR__ . "/detect.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\Core\Translator.php:85: self::$translation = require($loc);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\Database\ServerDB.php:23: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\lib\Twig\Extension\StringLoader.php:34: * {{ include(template_from_string("Hello {{ name }}")) }}
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\lib\Twig\Template.php:695: $message .= sprintf(' Use include("%s") instead).', $object->getTemplateName());
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\Extension\SandboxTest.php:38: '1_include' => '{{ include("1_basic1", sandboxed=true) }}',
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\Extension\SandboxTest.php:259: $this->assertFalse($twig->getExtension('Twig_Extension_Sandbox')->isSandboxed(), 'Sandboxed include() function call should not leave Sandbox enabled when an error occurs.');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\NodeVisitor\OptimizerTest.php:93: array('{% for i in foo %}{{ include("foo") }}{% endfor %}', array('i' => true)),
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\NodeVisitor\OptimizerTest.php:95: array('{% for i in foo %}{{ include("foo", with_context = false) }}{% endfor %}', array('i' => false)),
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\NodeVisitor\OptimizerTest.php:97: array('{% for i in foo %}{{ include("foo", with_context = true) }}{% endfor %}', array('i' => true)),
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\NodeVisitor\OptimizerTest.php:99: array('{% for i in foo %}{{ include("foo", { "foo": "bar" }, with_context = false) }}{% endfor %}', array('i' => false)),
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\NodeVisitor\OptimizerTest.php:101: array('{% for i in foo %}{{ include("foo", { "foo": loop.index }, with_context = false) }}{% endfor %}', array('i' => true)),
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\TemplateTest.php:153: * @expectedDeprecation Calling "render" on template "index.twig" from template "index.twig" is deprecated since version 1.28 and won't be supported anymore in 2.0. Use include("index.twig") instead).
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\TemplateTest.php:154: * @expectedDeprecation Calling "display" on template "index.twig" from template "index.twig" is deprecated since version 1.28 and won't be supported anymore in 2.0. Use include("index.twig") instead).
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\TemplateTest.php:158: * @expectedDeprecation Calling "render" on template "index1.twig" from template "index.twig" is deprecated since version 1.28 and won't be supported anymore in 2.0. Use include("index1.twig") instead).
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\vendor\twig\twig\test\Twig\Tests\TemplateTest.php:159: * @expectedDeprecation Calling "display" on template "index1.twig" from template "index.twig" is deprecated since version 1.28 and won't be supported anymore in 2.0. Use include("index1.twig") instead).
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\bootstrap.php:9: require($location);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\api\include\config.php:8: require($path);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\Core\Database\ServerDB.php:16: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\Core\Templates\PHPView.php:17: require($this->filename);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\Core\Locale.php:43: require(ROOT_PATH .'include'.DIRECTORY_SEPARATOR."Locale" .DIRECTORY_SEPARATOR. $this->LocaleLanguage . DIRECTORY_SEPARATOR . $fileName);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\bootstrap.php:4: require(__DIR__ . '/vendor/autoload.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\bootstrap.php:6: require(__DIR__ . '/functions.general.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\include\config.inc.php:10: require($globalConfigFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\process\index.php:18: require("ipn.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\payment\options.php:1: <?php require("include/bootstrap.php");?>
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\libraries\classes\Core.php:240: * Removes insecure parts in a path; used before include() or
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\libraries\classes\Core.php:241: * require() when a part of the path comes from an insecure source
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\libraries\classes\Tracker.php:651: // require_once("libraries/sqlparser.lib.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\phpseclib\phpseclib\phpseclib\Crypt\AES.php:12: * to save one include_once().
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\include\tcpdf_fonts.php:851: $pfile .= 'include(dirname(__FILE__).\'/uni2cid_aj16.php\');'."\n";
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\include\tcpdf_fonts.php:858: $pfile .= 'include(dirname(__FILE__).\'/uni2cid_ak12.php\');'."\n";
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\include\tcpdf_fonts.php:865: $pfile .= 'include(dirname(__FILE__).\'/uni2cid_ag15.php\');'."\n";
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\include\tcpdf_fonts.php:873: $pfile .= 'include(dirname(__FILE__).\'/uni2cid_aj16.php\');'."\n";
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_autoconfig.php:65: require_once($tcpdf_config);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_barcodes_2d.php:257: require_once(dirname(__FILE__).'/include/barcodes/datamatrix.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_barcodes_2d.php:264: require_once(dirname(__FILE__).'/include/barcodes/pdf417.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_barcodes_2d.php:295: require_once(dirname(__FILE__).'/include/barcodes/qrcode.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_import.php:46: require_once(dirname(__FILE__).'/tcpdf.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_import.php:48: require_once(dirname(__FILE__).'/tcpdf_parser.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf_parser.php:44: require_once(dirname(__FILE__).'/include/tcpdf_filters.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:111: require_once(dirname(__FILE__).'/tcpdf_autoconfig.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:113: require_once(dirname(__FILE__).'/include/tcpdf_font_data.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:115: require_once(dirname(__FILE__).'/include/tcpdf_fonts.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:117: require_once(dirname(__FILE__).'/include/tcpdf_colors.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:119: require_once(dirname(__FILE__).'/include/tcpdf_images.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:121: require_once(dirname(__FILE__).'/include/tcpdf_static.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:4273: include($fontfile);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:15199: require_once(dirname(__FILE__).'/tcpdf_barcodes_1d.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\tecnickcom\tcpdf\tcpdf.php:15518: require_once(dirname(__FILE__).'/tcpdf_barcodes_2d.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\twig\twig\lib\Twig\Extension\StringLoader.php:34: * {{ include(template_from_string("Hello {{ name }}")) }}
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\pma\vendor\twig\twig\lib\Twig\Template.php:697: $message .= sprintf(' Use include("%s") instead).', $object->getTemplateName());
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\servers\dev\include\REDACTED_dev.service.php:5: require("/travian/main_script_dev/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\servers\dev\include\REDACTED_dev.service.php:7: require("/travian/main_script/include/AutomationEngine.php");
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\t4.answers\index.php:4: require(dirname(__DIR__, 2) . '/globalConfig.php');
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\voting\include\Core\Database\ServerDB.php:16: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\voting\include\bootstrap.php:8: require($globalConfigFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\globalConfig_new.php:102: $globalConfig['staticParameters']['gpacks'] = file_exists(__DIR__ . '/gpack/gpack.php') ? require(__DIR__ . '/gpack/gpack.php') : [];
+C:\Users\Admin\Documents\GitHub\Travian-Solo\sections\globalConfig.php:94: $globalConfig['staticParameters']['gpacks'] = file_exists(__DIR__ . '/gpack/gpack.php') ? require(__DIR__ . '/gpack/gpack.php') : [];
+C:\Users\Admin\Documents\GitHub\Travian-Solo\TaskWorker\include\Core\ServerDB.php:14: require($configFileLocation);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\TaskWorker\include\bootstrap.php:6: include($filePath);
+C:\Users\Admin\Documents\GitHub\Travian-Solo\vendor\phpunit\phpunit\src\TextUI\XmlConfiguration\Group\Groups.php:40: public function include(): GroupCollection
+C:\Users\Admin\Documents\GitHub\Travian-Solo\vendor\phpunit\phpunit\src\TextUI\TestRunner.php:1002: $arguments['groups'] = $groupConfiguration->include()->asArrayOfStrings();
+C:\Users\Admin\Documents\GitHub\Travian-Solo\vendor\phpunit\phpunit\src\TextUI\TestRunner.php:1064: $arguments['testdoxGroups'] = $testdoxGroupConfiguration->include()->asArrayOfStrings();

@@ -1,0 +1,1 @@
+# Add patterns or exact URLs to exclude from link checks

@@ -1,0 +1,12 @@
+# Lychee link checker configuration
+verbose = true
+no_progress = true
+max_concurrency = 6
+accept = ["429"]
+exclude_path = ["vendor", "node_modules", ".git"]
+exclude = [
+  "https://github.com/.*/compare/.*",
+  "https://github.com/.*/issues/.*",
+  "https://github.com/.*/pull/.*",
+  "https://github.com/.*/actions.*"
+]
