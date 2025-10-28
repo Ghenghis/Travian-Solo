@@ -179,10 +179,14 @@ class AuthCtrl extends ApiAbstractCtrl
             $this->response['fields']['usernameOrEmail'] = 'gameWorldNotStartedYet';
             return;
         }
-        $this->response = [];
         $serverDB = ServerDB::getInstance($server['configFileLocation']);
         $loginHelper = new LoginOperator($serverDB);
         $find = $loginHelper->findLogin($server['id'], $usernameOrEmail);
+        $this->response['debug_find'] = [
+            'type' => $find['type'] ?? 'NOT_SET',
+            'has_row' => isset($find['row']),
+            'has_id' => isset($find['row']['id']) ? 'YES' : 'NO'
+        ];
         if (!$find['type'] || !isset($find['row']['id'])) {
             $this->response['fields']['usernameOrEmail'] = 'userDoesNotExists';
             return;
@@ -200,6 +204,16 @@ class AuthCtrl extends ApiAbstractCtrl
                     return;
                 case 2:
                     $this->response['redirect'] = $server['gameWorldUrl'] . 'activate.php?detectLang&token=' . $find['row']['token'];
+                    return;
+                case 3:
+                    // User found in global activation table - needs activation
+                    // Get token from global DB
+                    $db = DB::getInstance();
+                    $stmt = $db->prepare("SELECT token FROM activation WHERE id=:id");
+                    $stmt->bindValue('id', $find['row']['id'], PDO::PARAM_INT);
+                    $stmt->execute();
+                    $token = $stmt->fetchColumn();
+                    $this->response['redirect'] = $server['gameWorldUrl'] . 'activate.php?detectLang&token=' . $token;
                     return;
             }
         } else {

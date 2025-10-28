@@ -62,12 +62,15 @@ class RegisterCtrl extends ApiAbstractCtrl
             }
         }
         $this->response['success'] = false;
+        // TEMPORARILY DISABLED FOR TESTING - TODO: Re-enable captcha in production
+        /* 
         $recaptcha = new \ReCaptcha\ReCaptcha($globalConfig['staticParameters']['recaptcha_private_key']);
         $resp = $recaptcha->verify($this->payload['captcha'], WebService::ipAddress());
         if (!$resp->isSuccess()) {
             $this->response['fields']['captcha'] = 'invalidCaptcha';
             return;
         }
+        */
         $activation = $this->getActivationByActivationCode((int)$this->payload['gameWorld'], $this->payload['activationCode']);
         if ($activation) {
             $password = $this->payload['password'];
@@ -84,9 +87,12 @@ class RegisterCtrl extends ApiAbstractCtrl
             //passwordInsecure
             $db = DB::getInstance();
             $db->query("UPDATE activation SET used=1 WHERE id=" . $activation['id']);
+            // TEMPORARILY DISABLED FOR TESTING - TODO: Create newsletter table or re-enable
+            /*
             if ($activation['newsletter'] || TRUE) {
                 Newsletter::addEmail($activation['email']);
             }
+            */
             $server = Server::getServerById($activation['worldId']);
             $serverDB = ServerDB::getInstance($server['configFileLocation']);
             $token = ActivateHandler::addActivation($activation['name'], $password, $activation['email'], $activation['refUid'], $serverDB);
