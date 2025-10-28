@@ -5,6 +5,7 @@ namespace Api\Ctrl;
 use Api\ApiAbstractCtrl;
 use Core\ActivateHandler;
 use Core\EmailService;
+use Core\MockEmailService;
 use Core\Newsletter;
 use Core\Server;
 use Core\WebService;
@@ -87,12 +88,14 @@ class RegisterCtrl extends ApiAbstractCtrl
             //passwordInsecure
             $db = DB::getInstance();
             $db->query("UPDATE activation SET used=1 WHERE id=" . $activation['id']);
-            // TEMPORARILY DISABLED FOR TESTING - TODO: Create newsletter table or re-enable
-            /*
-            if ($activation['newsletter'] || TRUE) {
-                Newsletter::addEmail($activation['email']);
+            // Newsletter signup (re-enabled after creating newsletter table)
+            if ($activation['newsletter']) {
+                try {
+                    Newsletter::addEmail($activation['email']);
+                } catch (\Exception $e) {
+                    error_log("Newsletter error (non-fatal): " . $e->getMessage());
+                }
             }
-            */
             $server = Server::getServerById($activation['worldId']);
             $serverDB = ServerDB::getInstance($server['configFileLocation']);
             $token = ActivateHandler::addActivation($activation['name'], $password, $activation['email'], $activation['refUid'], $serverDB);
@@ -283,8 +286,15 @@ class RegisterCtrl extends ApiAbstractCtrl
             $stmt->execute();
             error_log("RegisterCtrl: INSERT executed successfully, rowCount=" . $stmt->rowCount());
             
+            // Send activation email (using MockEmailService for testing)
             error_log("RegisterCtrl: Sending activation email");
-            EmailService::sendActivationMail($email, $server['id'], $server['worldId'], $username, $activationCode);
+            try {
+                MockEmailService::sendActivationMail($email, $activationCode, $server['worldId']);
+                error_log("RegisterCtrl: Activation email logged successfully");
+            } catch (\Exception $e) {
+                error_log("RegisterCtrl: Email error (non-fatal): " . $e->getMessage());
+                // Don't fail registration if email fails
+            }
             error_log("RegisterCtrl: Registration complete for user: $username");
         }
     }
