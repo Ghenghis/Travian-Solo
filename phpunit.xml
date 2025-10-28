@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         verbose="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    
+    <testsuites>
+        <testsuite name="Core">
+            <directory>tests/Unit/Core</directory>
+        </testsuite>
+        <testsuite name="API">
+            <directory>tests/Unit/Api</directory>
+        </testsuite>
+        <testsuite name="Middleware">
+            <directory>tests/Unit/Middleware</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+    
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">sections/api/include</directory>
+        </include>
+        <exclude>
+            <directory>sections/api/include/vendor</directory>
+        </exclude>
+        <report>
+            <html outputDirectory="tests/coverage/html"/>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
+        </report>
+    </coverage>
+    
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_HOST" value="mysql"/>
+        <env name="DB_USERNAME" value="travian_user"/>
+        <env name="DB_PASSWORD" value="travian_password123"/>
+        <env name="REDIS_HOST" value="redis"/>
+        <env name="REDIS_PORT" value="6379"/>
+    </php>
+</phpunit>

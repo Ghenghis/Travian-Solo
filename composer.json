@@ -1,0 +1,34 @@
+{
+    "name": "travian-solo/game-server",
+    "description": "Travian Solo Game Server - Production Ready",
+    "type": "project",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "sections/api/include/Core/",
+            "Api\\": "sections/api/include/Api/",
+            "Middleware\\": "sections/api/include/Middleware/",
+            "Model\\": "sections/api/include/Model/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html tests/coverage/html",
+        "test-security": "phpunit --testsuite Core --filter SecurityTest",
+        "test-middleware": "phpunit --testsuite Middleware"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
