@@ -41,8 +41,6 @@ class ApiDispatcher
             }
             Translator::setLanguage($this->payload['lang']);
         }
-        $data['_dispatcher_debug'] = "About to call {$controller}::{$action}";
         call_user_func([$dispatchedCtrl, $action]);
-        $data['_dispatcher_after'] = "Returned from {$controller}::{$action}";
     }
 }

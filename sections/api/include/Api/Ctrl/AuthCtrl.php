@@ -182,11 +182,6 @@ class AuthCtrl extends ApiAbstractCtrl
         $serverDB = ServerDB::getInstance($server['configFileLocation']);
         $loginHelper = new LoginOperator($serverDB);
         $find = $loginHelper->findLogin($server['id'], $usernameOrEmail);
-        $this->response['debug_find'] = [
-            'type' => $find['type'] ?? 'NOT_SET',
-            'has_row' => isset($find['row']),
-            'has_id' => isset($find['row']['id']) ? 'YES' : 'NO'
-        ];
         if (!$find['type'] || !isset($find['row']['id'])) {
             $this->response['fields']['usernameOrEmail'] = 'userDoesNotExists';
             return;
