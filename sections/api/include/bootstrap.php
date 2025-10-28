@@ -1,7 +1,7 @@
 <?php
 use Core\WebService;
 define("TEMPLATES_PATH", __DIR__ . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR);
-define("FILTERING_PATH", '/travian/filtering/');
+define("FILTERING_PATH", '/var/www/html/filtering/');
 require "vendor/autoload.php";
 spl_autoload_register(function ($name) {
     $location = __DIR__ . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';

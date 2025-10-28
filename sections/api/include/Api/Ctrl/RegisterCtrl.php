@@ -112,13 +112,18 @@ class RegisterCtrl extends ApiAbstractCtrl
 
     public function register()
     {
+        // Don't break the reference! Add keys instead of reassigning
+        $this->response['_METHOD_CALLED'] = 'register';
+        $this->response['debug'] = ['step' => 'start'];
         $needs = ['gameWorld', 'username', 'email', 'termsAndConditions'];
         foreach ($needs as $k) {
             if (!isset($this->payload[$k])) {
+                $this->response['debug']['missing'] = $k;
                 throw new MissingParameterException($k);
             }
         }
         $this->response['success'] = false;
+        $this->response['debug']['step'] = 'initialized';
         $server = Server::getServerById((int)$this->payload['gameWorld']);
         if (!$server) {
             $this->response['fields']['username'] = 'unknownGameWorld';
@@ -136,18 +141,31 @@ class RegisterCtrl extends ApiAbstractCtrl
         $subscribeNewsletter = isset($this->payload['subscribeNewsletter']) && $this->payload['subscribeNewsletter'];
         $termsAndConditions = isset($this->payload['termsAndConditions']) && $this->payload['termsAndConditions'];
         $errors = 0;
+        $this->response['debug']['email_checks'] = [];
         {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $this->response['debug']['email_checks'][] = 'FAILED: Invalid format';
                 ++$errors;
+            } else {
+                $this->response['debug']['email_checks'][] = 'PASSED: Valid format';
             }
             if (empty($email)) {
+                $this->response['debug']['email_checks'][] = 'FAILED: Empty';
                 ++$errors;
+            } else {
+                $this->response['debug']['email_checks'][] = 'PASSED: Not empty';
             }
-            if (strlen($email) < 5) { //5 letters.
+            if (strlen($email) < 5) {
+                $this->response['debug']['email_checks'][] = 'FAILED: Too short (< 5)';
                 ++$errors;
+            } else {
+                $this->response['debug']['email_checks'][] = 'PASSED: Length OK (>= 5)';
             }
-            if (strlen($email) > 90) { //5 letters.
+            if (strlen($email) > 90) {
+                $this->response['debug']['email_checks'][] = 'FAILED: Too long (> 90)';
                 ++$errors;
+            } else {
+                $this->response['debug']['email_checks'][] = 'PASSED: Length OK (<= 90)';
             }
         }
         {
@@ -216,9 +234,13 @@ class RegisterCtrl extends ApiAbstractCtrl
                 $errors++;
             }
         }
+        $this->response['debug']['errors'] = $errors;
+        $this->response['debug']['fields'] = $this->response['fields'] ?? [];
         if ($errors) {
+            $this->response['debug']['step'] = 'validation_failed';
             return;
         }
+        $this->response['debug']['step'] = 'validation_passed';
         if ($preRegister) {
             $this->useRegistrationKey($server['id'], $registrationKey);
         }
@@ -228,23 +250,36 @@ class RegisterCtrl extends ApiAbstractCtrl
             $refUid = $inviter['uid'];
         }
         $this->response['success'] = true;
+        error_log("RegisterCtrl: activation={$server['activation']}, taking " . ($server['activation'] == 0 ? 'ACTIVATION=0 path' : 'ACTIVATION=1 path'));
+        
         if ($server['activation'] == 0) {
+            error_log("RegisterCtrl: Using ActivateHandler (no email activation)");
             $token = ActivateHandler::addActivation($username, $password, $email, $refUid, $serverDB);
             EmailService::sendYouRegisteredOn($email, $server['worldId'], $username, $password, $server['gameWorldUrl']);
             $this->response['redirect'] = $server['gameWorldUrl'] . 'activate.php?token=' . $token;
         } else {
+            error_log("RegisterCtrl: Email activation required, inserting to global DB");
             $db = DB::getInstance();
-            $stmt = $db->prepare("INSERT INTO activation (`worldId`, `name`, `password`, `email`, `activationCode`, `newsletter`, `refUid`, `time`) VALUES (:wid, :username, :password, :email, :activationCode, :newsletter, :refUid, :time)");
+            // Generate a token for the activation record
+            $token = md5($username . $email . microtime());
+            $stmt = $db->prepare("INSERT INTO activation (`worldId`, `name`, `password`, `email`, `activationCode`, `newsletter`, `token`, `refUid`, `time`) VALUES (:wid, :username, :password, :email, :activationCode, :newsletter, :token, :refUid, :time)");
             $stmt->bindValue('wid', $server['id'], PDO::PARAM_INT);
             $stmt->bindValue('username', $username, PDO::PARAM_STR);
-            $stmt->bindValue('password', empty($password) ? sha1(microtime() . time()) : '', PDO::PARAM_STR);
+            $stmt->bindValue('password', !empty($password) ? $password : sha1(microtime() . time()), PDO::PARAM_STR);
             $stmt->bindValue('email', $email, PDO::PARAM_STR);
             $stmt->bindValue('activationCode', $activationCode, PDO::PARAM_STR);
             $stmt->bindValue('newsletter', $subscribeNewsletter ? 1 : 0, PDO::PARAM_INT);
+            $stmt->bindValue('token', $token, PDO::PARAM_STR);
             $stmt->bindValue('refUid', $refUid, PDO::PARAM_INT);
             $stmt->bindValue('time', time(), PDO::PARAM_INT);
+            
+            error_log("RegisterCtrl: About to execute INSERT for user: $username");
             $stmt->execute();
+            error_log("RegisterCtrl: INSERT executed successfully, rowCount=" . $stmt->rowCount());
+            
+            error_log("RegisterCtrl: Sending activation email");
             EmailService::sendActivationMail($email, $server['id'], $server['worldId'], $username, $activationCode);
+            error_log("RegisterCtrl: Registration complete for user: $username");
         }
     }
 

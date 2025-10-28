@@ -24,8 +24,16 @@ class ServerDB
         if (!isset($connection)) {
             throw new \Exception("Invalid data was in connection file!");
         }
-        $options = [];
-        $dsn = 'mysql:charset=utf8mb4;host=' . $connection['database']['hostname'] . ';dbname=' . $connection['database']['database'];
+
+        // Debug: print connection config
+        error_log("ServerDB Config - Host: {$connection['database']['hostname']}, Port: {$connection['database']['port']}, DB: {$connection['database']['database']}, File: $configFileLocation");
+
+        $options = [
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            \PDO::ATTR_EMULATE_PREPARES => false
+        ];
+        $dsn = 'mysql:charset=utf8mb4;host=' . $connection['database']['hostname'] . ';port=' . $connection['database']['port'] . ';dbname=' . $connection['database']['database'];
         $db = self::$connections[$configKey] = new \PDO($dsn, $connection['database']['username'], $connection['database']['password'], $options);
         $db->exec("set names utf8");
         return $db;

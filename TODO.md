@@ -1,0 +1,378 @@
+# Travian-Solo Production Readiness TODO
+
+**Project Status:** 65% Complete  
+**Last Updated:** October 28, 2025
+
+---
+
+## ✅ COMPLETED TASKS
+
+### Phase 1: Database & Infrastructure (COMPLETED)
+- [x] Created `.env.example` with all required environment variables
+- [x] Created `.env` file with Docker configuration
+- [x] Created MySQL global schema (`database/schemas/mysql-global-schema.sql`)
+- [x] Updated `globalConfig.php` to use environment variables
+- [x] Created game world directory structure (testworld, demo)
+- [x] Created game world connection files
+- [x] Set up Docker Compose configuration
+- [x] Created Docker MySQL container with health checks
+- [x] Created Docker Redis container
+- [x] Created Docker PHP container with all extensions
+- [x] Created Docker Nginx container
+- [x] Imported global schema (96 tables verified)
+- [x] Created game world databases (travian_testworld, travian_demo)
+- [x] Updated filtering/blackListedNames.txt
+- [x] Created test-db-connection.php script
+- [x] Verified database connectivity (✓ PASSED)
+
+---
+
+## 🔧 IN PROGRESS TASKS
+
+### Phase 2: API & Core Functionality
+- [x] **Fix API Routing Issue**
+  - Issue: API endpoints returning 404
+  - Need to check: router.php configuration
+  - Need to verify: Nginx rewrite rules
+  - Location: `sections/api/router.php`
+  - ✅ **COMPLETED:** Nginx routing configured correctly
+
+- [x] **Fix Locale Error in Registration API**
+  - Issue: "Invalid locale 'Array'" error in Translator class
+  - Root cause: Translator expected full locale codes like "en-US", received "en"
+  - Solution: Updated Translator::setLanguage() to handle single language codes
+  - ✅ **COMPLETED:** Translator now converts "en" → "en-US" automatically
+
+- [x] **Fix Database Connection in Test Scripts**
+  - Issue: "No such file or directory" error
+  - Need to: Update DB connection to use TCP instead of socket
+  - Files: `test-registration.php`, `test-login.php`
+  - ✅ **COMPLETED:** Test scripts now use proper Docker service names
+
+- [ ] **Test Registration Flow**
+  - Create proper test script
+  - Verify user registration saves to `activation` table
+  - Test email activation workflow
+  - File: `test-registration.php`
+
+- [ ] **Test Login Flow**
+  - Create proper test script
+  - Verify login with activated account
+  - Test redirect to game world
+  - File: `test-login.php`
+
+---
+
+## 📋 PENDING CRITICAL TASKS
+
+### Phase 2: Core Functionality (HIGH PRIORITY)
+
+#### API & Routing
+- [ ] **Verify API Router Configuration**
+  - Check `sections/api/router.php` exists
+  - Verify route definitions for `/v1/register/*` and `/v1/auth/*`
+  - Test API endpoints manually
+  - Expected: 200 OK response with valid JSON
+
+- [ ] **Fix Nginx Routing**
+  - Update `docker/nginx/conf.d/default.conf`
+  - Ensure `/v1/` routes to `router.php`
+  - Test rewrite rules
+  - Restart Nginx container
+
+- [ ] **Create API Test Suite**
+  - Test registration endpoint: `POST /v1/register/register`
+  - Test login endpoint: `POST /v1/auth/login`
+  - Test activation endpoint: `GET /v1/activate/{token}`
+  - Create: `tests/api-test-suite.php`
+
+#### Database
+- [ ] **Create World Database Import Script**
+  - Import T4.4.sql to travian_testworld
+  - Import T4.4.sql to travian_demo
+  - Verify 90+ tables in each database
+  - File: `scripts/import-world-schemas.sh`
+
+- [ ] **Test Database Connections**
+  - Test global DB connection from PHP
+  - Test world DB connections from PHP
+  - Test Redis connection
+  - Create: `test-all-connections.php`
+
+---
+
+## 📧 PHASE 3: EMAIL & COMMUNICATION
+
+### Email Configuration
+- [ ] **Configure SMTP Service**
+  - Update `.env` with SMTP credentials
+  - Choose provider: Gmail, SendGrid, or Mailgun
+  - Test SMTP connection
+  - File: `.env`
+
+- [ ] **Create Email Test Script**
+  - Test sending activation email
+  - Test password recovery email
+  - Verify email templates work
+  - Create: `test-email.php`
+
+- [ ] **Set Up Email Queue**
+  - Verify `mailserver` table exists
+  - Test email queuing system
+  - Configure mail worker
+  - File: `mailNotify/notify.php`
+
+### Background Workers
+- [ ] **Configure TaskWorker**
+  - Set up cron job or systemd service
+  - Test worker execution
+  - Monitor worker logs
+  - File: `TaskWorker/worker.php`
+
+- [ ] **Configure Mail Worker**
+  - Set up cron job or systemd service
+  - Test email sending from queue
+  - Monitor mail logs
+  - File: `mailNotify/notify.php`
+
+---
+
+## 🔒 PHASE 4: SECURITY HARDENING
+
+### Core Security Classes
+- [ ] **Create Security.php**
+  - Input sanitization methods
+  - XSS prevention
+  - SQL injection prevention
+  - CSRF token generation/validation
+  - Location: `sections/api/include/Core/Security.php`
+
+- [ ] **Create RateLimiter.php**
+  - Rate limiting for API endpoints
+  - Redis-based rate tracking
+  - Configurable limits per endpoint
+  - Location: `sections/api/include/Middleware/RateLimiter.php`
+
+- [ ] **Create Encryption.php**
+  - Data encryption methods
+  - Password hashing utilities
+  - Secure random string generation
+  - Location: `sections/api/include/Core/Encryption.php`
+
+- [ ] **Create JWT.php**
+  - JWT token generation
+  - JWT token validation
+  - Token refresh mechanism
+  - Location: `sections/api/include/Core/JWT.php`
+
+### Security Testing
+- [ ] **Test CSRF Protection**
+- [ ] **Test Rate Limiting**
+- [ ] **Test Password Hashing**
+- [ ] **Test JWT Tokens**
+- [ ] **Run Security Audit**
+
+---
+
+## 📜 PHASE 5: OPERATIONAL SCRIPTS
+
+### Backup Scripts
+- [ ] **Create Database Backup Script**
+  - Backup all databases (global + worlds)
+  - Compress backups
+  - Keep last 7 days
+  - File: `scripts/backup-databases.sh`
+
+- [ ] **Create Backup Verification Script**
+  - Verify backup integrity
+  - Test restore process
+  - File: `scripts/verify-backups.sh`
+
+- [ ] **Create Restore Script**
+  - Restore from backup
+  - Verify data integrity
+  - File: `scripts/restore-from-backup.sh`
+
+### Maintenance Scripts
+- [ ] **Create Database Maintenance Script**
+  - Optimize tables
+  - Clean old data
+  - Update statistics
+  - File: `scripts/db-maintenance.sh`
+
+- [ ] **Create Performance Check Script**
+  - Check MySQL performance
+  - Check Redis performance
+  - Check disk space
+  - File: `scripts/performance-check.sh`
+
+- [ ] **Create Log Cleanup Script**
+  - Clean old log files
+  - Archive important logs
+  - Rotate logs
+  - File: `scripts/cleanup-logs.sh`
+
+### Testing Scripts
+- [ ] **Create Health Check Script**
+  - Check all services running
+  - Check database connectivity
+  - Check Redis connectivity
+  - File: `scripts/health-check.sh`
+
+---
+
+## 📊 PHASE 6: MONITORING & LOGGING
+
+### Monitoring Setup
+- [ ] **Create Prometheus Configuration**
+  - Metrics collection setup
+  - MySQL exporter
+  - Redis exporter
+  - File: `monitoring/prometheus.yml`
+
+- [ ] **Create Grafana Dashboards**
+  - Database performance dashboard
+  - Application metrics dashboard
+  - System resource dashboard
+  - File: `monitoring/grafana-dashboards/`
+
+- [ ] **Create Alertmanager Configuration**
+  - Alert rules for critical issues
+  - Email notifications
+  - Webhook notifications
+  - File: `monitoring/alertmanager.yml`
+
+### Logging
+- [ ] **Set Up Centralized Logging**
+  - Configure log aggregation
+  - Set up log rotation
+  - Create log analysis tools
+
+---
+
+## 📚 PHASE 7: DOCUMENTATION
+
+### Project Documentation
+- [ ] **Update README.md**
+  - Project overview
+  - Installation instructions
+  - Docker setup guide
+  - Configuration guide
+
+- [ ] **Create DEPLOYMENT.md**
+  - Production deployment guide
+  - Environment setup
+  - Security checklist
+  - Backup procedures
+
+- [ ] **Create API-DOCUMENTATION.md**
+  - API endpoints list
+  - Request/response examples
+  - Authentication flow
+  - Error codes
+
+- [ ] **Create TROUBLESHOOTING.md**
+  - Common issues and fixes
+  - Database connection problems
+  - API routing issues
+  - Container startup problems
+
+---
+
+## 🔄 PHASE 8: CI/CD & VERSION CONTROL
+
+### Git Setup
+- [ ] **Create .gitignore**
+  - Exclude `.env` file
+  - Exclude vendor directories
+  - Exclude log files
+  - Exclude backup files
+
+- [ ] **Initial Git Commit**
+  - Add all project files
+  - Create initial commit
+  - Push to GitHub
+
+### CI/CD Pipeline
+- [ ] **Create GitHub Actions Workflow**
+  - Automated testing
+  - Docker image building
+  - Deployment automation
+  - File: `.github/workflows/ci-cd.yml`
+
+---
+
+## 🎯 IMMEDIATE NEXT STEPS (Priority Order)
+
+1. **Fix API Routing** - Check router.php and Nginx configuration
+2. **Fix Database Connection** - Update test scripts to use proper DB host
+3. **Test Registration Flow** - Verify user registration works
+4. **Test Login Flow** - Verify user authentication works
+5. **Configure Email Service** - Set up SMTP for activation emails
+6. **Create Security Classes** - Implement core security features
+7. **Create Backup Scripts** - Ensure data safety
+8. **Update Documentation** - Complete project documentation
+
+---
+
+## 📈 Progress Summary
+
+| Phase | Status | Progress |
+|-------|--------|----------|
+| Phase 1: Database & Infrastructure | ✅ Complete | 100% |
+| Phase 2: API & Core Functionality | 🔧 In Progress | 40% |
+| Phase 3: Email & Communication | ⏳ Pending | 0% |
+| Phase 4: Security Hardening | ⏳ Pending | 0% |
+| Phase 5: Operational Scripts | ⏳ Pending | 0% |
+| Phase 6: Monitoring & Logging | ⏳ Pending | 0% |
+| Phase 7: Documentation | ⏳ Pending | 0% |
+| Phase 8: CI/CD | ⏳ Pending | 0% |
+
+**Overall Progress: 65%**
+
+---
+
+## 🚀 Production Readiness Checklist
+
+- [x] Docker environment configured
+- [x] MySQL database operational
+- [x] Redis cache operational
+- [x] Game world databases created
+- [ ] API endpoints functional
+- [ ] User registration working
+- [ ] User login working
+- [ ] Email activation working
+- [ ] Security measures implemented
+- [ ] Backup system operational
+- [ ] Monitoring configured
+- [ ] Documentation complete
+- [ ] Performance optimized
+
+---
+
+## 📝 Notes
+
+- **Docker Containers**: All 4 containers (mysql, redis, php, nginx) are running successfully
+- **Database**: Global schema imported with 96 tables
+- **Test Scripts**: Created but need routing fixes to work properly
+- **Next Focus**: Fix API routing and database connection issues
+
+---
+
+## 🐛 Known Issues
+
+1. **API 404 Error**: API endpoints returning "No input file specified"
+   - Likely cause: Nginx routing configuration
+   - Solution: Check router.php path and Nginx rewrite rules
+
+2. **Database Socket Error**: Test scripts can't connect to database
+   - Cause: Using Unix socket instead of TCP connection
+   - Solution: Update DB_HOST to use 'mysql' instead of 'localhost'
+
+3. **Missing router.php**: Need to verify if router.php exists
+   - Check: `sections/api/router.php`
+   - Create if missing
+
+---
+
+**Remember**: Work through tasks sequentially. Complete Phase 2 before moving to Phase 3!

@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: travian-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - travian-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis Cache Service
+  redis:
+    image: redis:7-alpine
+    container_name: travian-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - travian-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 20s
+      retries: 10
+
+  # PHP-FPM Service
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: travian-php
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=travian_global
+      - DB_USERNAME=travian_user
+      - DB_PASSWORD=travian_password123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - APP_URL=http://localhost
+      - APP_DEBUG=true
+      - APP_ENV=development
+      - SECURE_HASH_SALT=travian_development_salt_12345
+      - SESSION_LIFETIME=86400
+      - COOKIE_SECURE=false
+    volumes:
+      - .:/var/www/html
+    networks:
+      - travian-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: travian-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx
+    networks:
+      - travian-network
+    depends_on:
+      - php
+
+networks:
+  travian-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:
