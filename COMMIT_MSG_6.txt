@@ -1,0 +1,9 @@
+chore(quality): add phpmd/phpstan configs and tooling
+
+- Add phpmd.xml with legacy-tolerant ruleset
+- Add phpstan.neon (level 6) with sensible exclusions
+- Lock composer with dev tools (phpmd, phpstan, phpcs, php-cs-fixer)
+- Ignore vendor/ directory
+
+Note: Direct tool execution currently hits parsing errors in legacy code.
+Configs are in place for future use as codebase is incrementally cleaned.

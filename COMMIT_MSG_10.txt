@@ -1,0 +1,5 @@
+docs(readme): add Acknowledgements & Contributors section
+
+- Credit advocaite and WallcroftUK with links
+- Embed dynamic contributors image (contrib.rocks)
+- Keep License section placement intact

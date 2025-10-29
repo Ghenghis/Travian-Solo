@@ -1,0 +1,5 @@
+chore(docs): add detailed Mermaid diagrams to AI roadmap and docs/README
+
+- ROADMAP: decision loop, diplomacy FSM, coordination, economy pipeline, LLM routing, data model, observability
+- README: system map + high-level Gantt roadmap
+- Grounded in docs/AI/* specifications; non-functional doc enhancements only

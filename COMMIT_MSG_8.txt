@@ -1,0 +1,6 @@
+chore(docs): add AI roadmap and modernize docs landing
+
+- Add AI/ROADMAP.md (phased plan for Solo Play + AI)
+- Insert "What’s Coming: Solo Play (Human + AI)" section in docs/README.md
+- Add badges and quick navigation to docs/README.md
+- Keep docs/AI/ content authoritative; roadmap aggregates and links
