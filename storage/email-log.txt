@@ -3,3 +3,8 @@ To: tëst@example.com
 Activation Code: UNICODE
 World ID: 1
 ---
+[2025-10-29 09:56:26] ACTIVATION EMAIL
+To: test_1761731786@example.com
+Activation Code: e3329cb2ca24
+World ID: testworld
+---

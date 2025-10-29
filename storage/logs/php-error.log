@@ -264,3 +264,57 @@ Stack trace:
 [28-Oct-2025 22:50:28 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
 [29-Oct-2025 00:38:59 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
 [29-Oct-2025 01:44:55 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[29-Oct-2025 09:19:04 UTC] ERROR: Database password not configured for testworld
+[29-Oct-2025 09:19:04 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:19:04 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:19:04 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:19:04 UTC] ERROR: Database password not configured for demo
+[29-Oct-2025 09:19:04 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:19:04 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_demo, File: /var/www/html/sections/servers/demo/include/connection.php
+[29-Oct-2025 09:19:04 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:20:54 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:20:54 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:20:54 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:20:54 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:20:54 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_demo, File: /var/www/html/sections/servers/demo/include/connection.php
+[29-Oct-2025 09:20:54 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:43:53 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:43:53 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:43:53 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:43:53 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:43:53 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_demo, File: /var/www/html/sections/servers/demo/include/connection.php
+[29-Oct-2025 09:43:53 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:48:41 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:48:41 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:48:41 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:48:41 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:48:41 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_demo, File: /var/www/html/sections/servers/demo/include/connection.php
+[29-Oct-2025 09:48:41 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:50:21 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:50:21 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:50:21 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:50:21 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 29
+[29-Oct-2025 09:50:21 UTC] ServerDB Config - Host: mysql, Port: , DB: travian_demo, File: /var/www/html/sections/servers/demo/include/connection.php
+[29-Oct-2025 09:50:21 UTC] PHP Warning:  Undefined array key "port" in /var/www/html/sections/api/include/Database/ServerDB.php on line 36
+[29-Oct-2025 09:50:28 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:50:28 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:50:28 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:52:54 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:52:54 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:52:54 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:55:34 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:55:34 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:55:34 UTC] PHP Fatal error:  Uncaught Error: Class "Database\DB" not found in /var/www/html/test-registration-debug.php:48
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/test-registration-debug.php on line 48
+[29-Oct-2025 09:56:26 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[29-Oct-2025 09:56:26 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: About to execute INSERT for user: test731786
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: Sending activation email
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: Activation email logged successfully
+[29-Oct-2025 09:56:26 UTC] RegisterCtrl: Registration complete for user: test731786
+[29-Oct-2025 09:56:26 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
