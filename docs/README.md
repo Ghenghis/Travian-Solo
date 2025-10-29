@@ -1,8 +1,40 @@
 # TravianT4.6 Documentation - Production Readiness Guide
 
+![Static Badge](https://img.shields.io/badge/Phase-Cleanup_Complete-success?style=for-the-badge)
+[![Stars](https://img.shields.io/github/stars/Ghenghis/Travian-Solo?style=for-the-badge)](https://github.com/Ghenghis/Travian-Solo/stargazers)
+[![Forks](https://img.shields.io/github/forks/Ghenghis/Travian-Solo?style=for-the-badge)](https://github.com/Ghenghis/Travian-Solo/forks)
+[![License](https://img.shields.io/github/license/Ghenghis/Travian-Solo?style=for-the-badge)](../LICENSE)
+
+> Build a production‑ready TravianT4.6 and evolve toward a Solo Play world with intelligent AI factions.
+
+—
+
+Quick Nav:
+- **Roadmap**: [AI/ROADMAP.md](AI/ROADMAP.md)
+- **AI Docs Hub**: [AI/README.md](AI/README.md)
+- **Production Fixes**: [COMPLETE-FIX-ROADMAP.md](COMPLETE-FIX-ROADMAP.md)
+- **Readiness Checklist**: [PRODUCTION-READINESS-CHECKLIST.md](PRODUCTION-READINESS-CHECKLIST.md)
+
 ## 📋 Documentation Structure
 
 This `docs/` folder contains **complete, step-by-step guides** for taking TravianT4.6 from its current state to 100% production-ready.
+
+---
+
+## 🌌 What’s Coming: Solo Play (Human + AI)
+
+Design for a single human to play in a living world of hundreds of AI factions — allies, rivals, and neutrals — all thinking, trading, building, and plotting.
+
+- **Highlights**
+  - Smart NPCs: economy, combat, diplomacy, alliances, personalities
+  - Multi-agent ops: shared intel, synchronized strikes, role assignment
+  - Local LLM integration (vLLM/Ollama) with GPU-aware routing
+  - Ethical, explainable decisions with readable difficulty scaling
+- **Read the AI plan**
+  - Roadmap: [AI/ROADMAP.md](AI/ROADMAP.md)
+  - Full AI docs: [AI/README.md](AI/README.md)
+
+Note: The `docs/AI/` folder is reserved for future AI integration and remains unchanged during cleanup.
 
 ---
 
