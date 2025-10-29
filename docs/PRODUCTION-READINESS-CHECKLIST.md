@@ -316,7 +316,7 @@ docker-compose.yml                         ❌ NOT CREATED
 **Required Fix**: Create all Docker configuration files from documentation
 
 **Status**: ⏳ PENDING
-**Priority**: MEDIUM - Can use Replit server for now
+**Priority**: MEDIUM - Use local Docker dev server for now
 **Estimated Time**: 4 hours
 
 ---
@@ -375,7 +375,7 @@ sections/api/include/Core/Encryption.php   ❌ NOT CREATED
 3. ✅ API endpoints respond with JSON
 4. ✅ Angular frontend loads
 5. ✅ Router.php handles basic routing
-6. ✅ Column name mapping for PostgreSQL
+6. ✅ Column naming verified (MySQL)
 
 ### What's Broken ❌
 1. ❌ Login system (no game world databases)
