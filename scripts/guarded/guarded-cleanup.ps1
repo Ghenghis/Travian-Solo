@@ -98,7 +98,8 @@ try {
                     'run','--rm','-v',$vol,
                     'lycheeverse/lychee:latest',
                     '--no-progress','--verbose',
-                    '--config','/data/lychee.toml'
+                    '--config','/data/lychee.toml',
+                    '/data/docs','/data/README.md'
                 )
             } else {
                 $args = @(
