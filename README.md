@@ -66,6 +66,13 @@ pwsh -NoProfile -File .\scripts\guarded\guarded-cleanup.ps1 -Stage Stage7       
 - See `docs/README.md` and the detailed guides under `docs/`
 - The `docs/AI/` folder is reserved for future AI integration and remains unchanged during cleanup
 
+## Acknowledgements & Contributors
+
+- Foundational work and significant help by [advocaite](https://github.com/advocaite) and [WallcroftUK](https://github.com/WallcroftUK).
+- Full contributor history: [Contributors Graph](https://github.com/Ghenghis/Travian-Solo/graphs/contributors)
+
+[![Contributors](https://contrib.rocks/image?repo=Ghenghis/Travian-Solo)](https://github.com/Ghenghis/Travian-Solo/graphs/contributors)
+
 ## License
 
 See `LICENSE`.
