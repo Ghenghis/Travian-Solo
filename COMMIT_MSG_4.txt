@@ -1,0 +1,9 @@
+chore(root): organize root into _project structure (no code changes)
+
+- Move test/check scripts → _project/testing/
+- Move admin/setup scripts → _project/admin/
+- Move old docs → _project/archive-docs/
+- Move repo-files.txt → reports/
+- Move main.sql → database/
+- Delete .phpunit.result.cache
+- Add _project/README.md

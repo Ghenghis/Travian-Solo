@@ -1,0 +1,5 @@
+chore(root): relocate long-form docs, move run script, ignore phpunit cache
+
+- Move ARCHITECTURE/QUALITY/TESTING/DEBUGGING to docs/
+- Move run-unit-tests.sh to scripts/
+- Ignore .phpunit.result.cache in git

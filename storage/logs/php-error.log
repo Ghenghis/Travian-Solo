@@ -1,0 +1,266 @@
+[28-Oct-2025 10:00:08 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:00:08 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:06:52 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:06:52 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:06:52 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:06:52 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:09:29 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:09:30 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:09:30 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:09:30 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:11:16 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:11:16 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:11:16 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:11:16 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:14:32 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:14:32 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:14:32 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:14:32 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:15:15 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:15:15 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:15:15 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:15:15 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:15:25 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:15:25 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:15:25 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:15:25 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:15:53 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:15:59 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:16:07 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:16:07 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:16:07 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:16:07 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:16:48 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:16:48 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:16:48 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:16:48 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:18:19 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:18:19 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:18:19 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:18:19 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:19:03 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:18:57 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:18:57 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:18:57 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:19:15 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:19:15 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:19:15 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:19:15 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:19:49 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:19:49 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:20:18 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:20:18 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:20:18 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:20:18 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:20:47 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:20:47 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:21:20 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:21:20 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:21:39 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:21:39 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:21:58 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:22:27 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:22:27 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:22:27 UTC] PHP Fatal error:  Uncaught TypeError: rewind(): Argument #1 ($stream) must be of type resource, bool given in /var/www/html/test-registration-container.php:43
+Stack trace:
+#0 /var/www/html/test-registration-container.php(43): rewind(false)
+#1 {main}
+  thrown in /var/www/html/test-registration-container.php on line 43
+[28-Oct-2025 10:22:59 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:24:59 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:24:59 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:25:00 UTC] PHP Fatal error:  Uncaught TypeError: rewind(): Argument #1 ($stream) must be of type resource, bool given in /var/www/html/test-registration-container.php:43
+Stack trace:
+#0 /var/www/html/test-registration-container.php(43): rewind(false)
+#1 {main}
+  thrown in /var/www/html/test-registration-container.php on line 43
+[28-Oct-2025 10:25:07 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:25:07 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:25:07 UTC] PHP Fatal error:  Uncaught TypeError: rewind(): Argument #1 ($stream) must be of type resource, bool given in /var/www/html/test-registration-container.php:43
+Stack trace:
+#0 /var/www/html/test-registration-container.php(43): rewind(false)
+#1 {main}
+  thrown in /var/www/html/test-registration-container.php on line 43
+[28-Oct-2025 10:25:31 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:25:31 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:25:31 UTC] PHP Fatal error:  Uncaught TypeError: rewind(): Argument #1 ($stream) must be of type resource, bool given in /var/www/html/test-registration-container.php:43
+Stack trace:
+#0 /var/www/html/test-registration-container.php(43): rewind(false)
+#1 {main}
+  thrown in /var/www/html/test-registration-container.php on line 43
+[28-Oct-2025 10:26:00 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:26:00 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:26:36 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:26:36 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:26:57 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:26:57 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:27:52 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:27:52 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:30:33 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:30:33 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:30:49 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:30:57 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 10:39:15 UTC] ERROR: DB_PASSWORD not configured
+[28-Oct-2025 10:39:15 UTC] CRITICAL: Missing configuration for DB_PASSWORD
+[28-Oct-2025 10:45:57 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:45:57 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 10:48:36 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:48:36 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 10:48:36 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:57:47 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:57:47 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 10:57:47 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:59:52 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 10:59:52 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 10:59:52 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:13:04 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:13:04 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 11:13:04 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:15:58 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:15:58 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 11:15:58 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:47:42 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:47:42 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 11:48:32 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:48:32 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 11:50:27 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 11:50:27 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 12:09:16 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 12:09:16 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 12:22:58 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 12:22:58 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:02:37 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:02:37 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:09:09 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:09:09 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:11:03 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:11:03 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:14:20 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:14:20 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:19:25 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:19:25 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:20:14 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:20:14 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:21:22 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:21:22 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:22:56 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:22:56 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:22:56 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 13:22:56 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 13:22:56 UTC] RegisterCtrl: About to execute INSERT for user: user657776
+[28-Oct-2025 13:25:49 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:25:49 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:26:35 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:26:35 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:26:35 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 13:26:35 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 13:26:35 UTC] RegisterCtrl: About to execute INSERT for user: user657995
+[28-Oct-2025 13:27:13 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:27:13 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:27:13 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 13:27:13 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 13:27:13 UTC] RegisterCtrl: About to execute INSERT for user: user658033
+[28-Oct-2025 13:27:13 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[28-Oct-2025 13:27:13 UTC] RegisterCtrl: Sending activation email
+[28-Oct-2025 13:54:03 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:54:03 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:54:03 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:54:03 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:56:46 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:56:46 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:56:47 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:56:47 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:57:56 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:57:56 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 13:57:56 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 13:57:56 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:00:24 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:00:24 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:00:24 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:00:24 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:04:49 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:04:49 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:04:49 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:04:49 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:13:15 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:20:00 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:20:00 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 14:20:00 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 14:20:00 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 14:20:00 UTC] RegisterCtrl: About to execute INSERT for user: acttest1200
+[28-Oct-2025 14:20:00 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[28-Oct-2025 14:20:00 UTC] RegisterCtrl: Sending activation email
+[28-Oct-2025 14:20:00 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 14:20:00 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 15:06:10 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 15:06:10 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: About to execute INSERT for user: emailtest3969
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: Sending activation email
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: Activation email logged successfully
+[28-Oct-2025 15:06:10 UTC] RegisterCtrl: Registration complete for user: emailtest3969
+[28-Oct-2025 15:18:23 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /var/www/html/test-security-features.php on line 16
+[28-Oct-2025 15:18:23 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /var/www/html/sections/api/include/Core/Security.php on line 18
+[28-Oct-2025 15:18:23 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /var/www/html/sections/api/include/Core/Security.php on line 27
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:18:23 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 15:22:36 UTC] RateLimiter: Redis error - DENIED Redis is running in protected mode because protected mode is enabled and no password is set for the default user. In this mode connections are only accepted from the loopback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: 1) Just disable protected mode sending the command 'CONFIG SET protected-mode no' from the loopback interface by connecting to Redis from the same host the server is running, however MAKE SURE Redis is not publicly accessible from internet if you do so. Use CONFIG REWRITE to make this change permanent. 2) Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to 'no', and then restarting the server. 3) If you started the server manually just for testing, restart it with the '--protected-mode no' option. 4) Set up an authentication password for the default user. NOTE: You only need to do one of the above things in order for the server to start accepting connections from the outside.
+[28-Oct-2025 16:02:56 UTC] PHP Fatal error:  Uncaught Error: Class "Api\ApiAbstractCtrl" not found in /var/www/html/sections/api/include/Api/Ctrl/RegisterCtrl.php:17
+Stack trace:
+#0 /var/www/html/test-web-activation-flow.php(8): require_once()
+#1 {main}
+  thrown in /var/www/html/sections/api/include/Api/Ctrl/RegisterCtrl.php on line 17
+[28-Oct-2025 16:03:05 UTC] PHP Fatal error:  Uncaught Error: Class "Api\ApiAbstractCtrl" not found in /var/www/html/sections/api/include/Api/Ctrl/RegisterCtrl.php:17
+Stack trace:
+#0 /var/www/html/test-web-activation-flow.php(8): require_once()
+#1 {main}
+  thrown in /var/www/html/sections/api/include/Api/Ctrl/RegisterCtrl.php on line 17
+[28-Oct-2025 18:01:28 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 18:01:28 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: About to execute INSERT for user: emailtest4488
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: Sending activation email
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: Activation email logged successfully
+[28-Oct-2025 18:01:28 UTC] RegisterCtrl: Registration complete for user: emailtest4488
+[28-Oct-2025 18:21:08 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 18:21:08 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: activation=1, taking ACTIVATION=1 path
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: Email activation required, inserting to global DB
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: About to execute INSERT for user: acttest5668
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: INSERT executed successfully, rowCount=1
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: Sending activation email
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: Activation email logged successfully
+[28-Oct-2025 18:21:08 UTC] RegisterCtrl: Registration complete for user: acttest5668
+[28-Oct-2025 18:21:08 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 18:21:08 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 18:29:07 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 18:29:07 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 18:29:08 UTC] DB Config - Host: mysql, User: travian_user, DB: travian_global
+[28-Oct-2025 18:29:08 UTC] ServerDB Config - Host: mysql, Port: 3306, DB: travian_testworld, File: /var/www/html/sections/servers/testworld/include/connection.php
+[28-Oct-2025 19:07:03 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 19:54:02 UTC] PHP Fatal error:  Cannot redeclare Tests\Unit\Core\MockEmailServiceTest::it_logs_activation_email_content() in /var/www/html/tests/Unit/Core/MockEmailServiceTest.php on line 175
+[28-Oct-2025 20:03:35 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 20:11:10 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 20:14:20 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 20:17:31 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 20:24:59 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 20:56:50 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 22:03:35 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[28-Oct-2025 22:50:28 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[29-Oct-2025 00:38:59 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96
+[29-Oct-2025 01:44:55 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/sections/api/include/Core/Security.php on line 96

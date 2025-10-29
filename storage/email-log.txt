@@ -1,0 +1,5 @@
+[2025-10-29 01:44:55] ACTIVATION EMAIL
+To: tëst@example.com
+Activation Code: UNICODE
+World ID: 1
+---
