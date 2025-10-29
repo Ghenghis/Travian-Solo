@@ -9,5 +9,6 @@ exclude = [
   "https://github.com/.*/actions.*",
   "http://localhost.*",
   "http://127.0.0.1.*",
-  "https://travian.yourdomain.com.*"
+  "https://travian.yourdomain.com.*",
+  "https://dev.mysql.com/.*"
 ]

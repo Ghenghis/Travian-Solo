@@ -1,0 +1,1 @@
+chore: README refresh, link-check config updates, and guarded script enhancements

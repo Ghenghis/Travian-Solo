@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Stage0','Stage1','Stage4','Stage5','All')]
+    [ValidateSet('Stage0','Stage1','Stage4','Stage5','Stage7','All')]
     [string]$Stage = 'Stage1',
     [switch]$Apply
 )
@@ -134,11 +134,38 @@ try {
         if (-not $IsDryRun) { iex $cmd }
     }
 
+    function Stage7-Repair {
+        Write-Info 'Stage 7: Automated repair (formatting, linting, static analysis)'
+        # Install dev tools if missing (inside php container)
+        $composerInstall = 'docker-compose exec php composer install --no-interaction --no-progress'
+        Write-Run $composerInstall
+        if (-not $IsDryRun) { iex $composerInstall }
+
+        if ($IsDryRun) {
+            Write-Run 'docker-compose exec php composer lint'
+            Write-Run 'docker-compose exec php composer fixer'
+            Write-Run 'docker-compose exec php composer stan'
+            Write-Run 'docker-compose exec php composer md'
+            Write-Run 'docker-compose exec php composer loc'
+            Write-Run 'docker-compose exec php composer dup'
+        } else {
+            # Safe order: show first, then apply fixes, then re-lint
+            iex 'docker-compose exec php composer fixer'
+            iex 'docker-compose exec php composer lint:fix'
+            iex 'docker-compose exec php composer lint'
+            iex 'docker-compose exec php composer stan'
+            iex 'docker-compose exec php composer md'
+            iex 'docker-compose exec php composer loc'
+            iex 'docker-compose exec php composer dup'
+        }
+    }
+
     switch ($Stage) {
         'Stage0' { Stage0-Snapshot }
         'Stage1' { Stage1-Inventory }
         'Stage4' { Stage4-LinkCheck }
         'Stage5' { Stage5-Tests }
+        'Stage7' { Stage7-Repair }
         'All'    { Stage0-Snapshot; Stage1-Inventory; Stage4-LinkCheck; Stage5-Tests }
     }
 }
