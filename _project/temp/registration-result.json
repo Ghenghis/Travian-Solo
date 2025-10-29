@@ -1,0 +1,16 @@
+{
+    "timestamp": "2025-10-28 11:15:58",
+    "http_code": 200,
+    "response": {
+        "success": true,
+        "error": {
+            "errorType": null,
+            "errorMsg": null
+        },
+        "data": {
+            "success": false
+        }
+    },
+    "username": "testuser_1761650158",
+    "email": "test_1761650158@example.com"
+}

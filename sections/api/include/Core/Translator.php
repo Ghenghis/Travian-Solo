@@ -44,11 +44,31 @@ class Translator
 
     public static function setLanguage($locale, $restoreDefault = false)
     {
-        $locale = explode("-", $locale);
-        if(sizeof($locale) <> 2){
+        // Handle single language codes like "en" by converting to "en-US"
+        if (!str_contains($locale, '-')) {
+            // Map common language codes to their default locales
+            $defaultLocales = [
+                'en' => 'en-US',
+                'fa' => 'fa-IR',
+                'ar' => 'ar-SA',
+                'de' => 'de-DE',
+                'fr' => 'fr-FR',
+                'es' => 'es-ES',
+                'it' => 'it-IT',
+                'pt' => 'pt-BR',
+                'ru' => 'ru-RU',
+                'zh' => 'zh-CN',
+                'ja' => 'ja-JP',
+                'ko' => 'ko-KR',
+            ];
+            $locale = $defaultLocales[$locale] ?? $locale . '-US';
+        }
+
+        $localeParts = explode("-", $locale);
+        if (sizeof($localeParts) <> 2) {
             throw new ErrorException("Invalid locale \"$locale\"");
         }
-        list($language, $country) = $locale;
+        list($language, $country) = $localeParts;
         $language = strtolower($language);
         $country = strtoupper($country);
         $locale = sprintf('%s-%s', $language, $country);

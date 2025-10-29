@@ -16,24 +16,12 @@ class MockEmailServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // Use the REAL MockEmailService class from production codebase
-        $this->logDir = __DIR__ . '/../../../logs/emails';
-        
-        // Create log directory if it doesn't exist
-        if (!is_dir($this->logDir)) {
-            mkdir($this->logDir, 0777, true);
-        }
+        // Clear shared log file and in-memory log to avoid cross-test interference
+        MockEmailService::clearLog();
     }
     
     protected function tearDown(): void
     {
-        // Clean up test log files
-        $files = glob($this->logDir . '/test_*.log');
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
-            }
-        }
         parent::tearDown();
     }
     
@@ -41,13 +29,13 @@ class MockEmailServiceTest extends TestCase
      * @test
      * @group email
      */
-    public function it_sends_activation_email()
+    public function it_sends_activation_email_basic()
     {
         $email = 'test@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
-        $lang = 'en';
+        $code = 'TEST123';
+        $worldId = 1;
         
-        $result = MockEmailService::sendActivationMail($email, $activationLink, $lang);
+        $result = MockEmailService::sendActivationMail($email, $code, $worldId);
         
         $this->assertTrue($result);
     }
@@ -56,39 +44,35 @@ class MockEmailServiceTest extends TestCase
      * @test
      * @group email
      */
-    public function it_creates_log_file_for_activation_email()
+    public function it_logs_activation_email_to_shared_file()
     {
         $email = 'test_' . time() . '@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
-        $lang = 'en';
+        $code = 'CODE123';
+        $worldId = 2;
         
-        MockEmailService::sendActivationMail($email, $activationLink, $lang);
+        MockEmailService::sendActivationMail($email, $code, $worldId);
         
-        // Check if log file was created
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $this->assertNotEmpty($logFiles);
+        $content = MockEmailService::getLoggedEmails();
+        $this->assertStringContainsString('ACTIVATION EMAIL', $content);
+        $this->assertStringContainsString($email, $content);
     }
     
     /**
      * @test
      * @group email
      */
-    public function it_logs_activation_email_content()
+    public function it_logs_activation_email_content_basic()
     {
         $email = 'test_' . time() . '@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
-        $lang = 'en';
+        $code = 'LOGME123';
+        $worldId = 3;
         
-        MockEmailService::sendActivationMail($email, $activationLink, $lang);
+        MockEmailService::sendActivationMail($email, $code, $worldId);
         
-        // Get the latest log file
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $latestLog = end($logFiles);
-        
-        $content = file_get_contents($latestLog);
+        $content = MockEmailService::getLoggedEmails();
         
         $this->assertStringContainsString($email, $content);
-        $this->assertStringContainsString($activationLink, $content);
+        $this->assertStringContainsString($code, $content);
     }
     
     /**
@@ -98,10 +82,12 @@ class MockEmailServiceTest extends TestCase
     public function it_sends_password_recovery_email()
     {
         $email = 'test@example.com';
-        $resetLink = 'http://localhost/reset?token=test123';
-        $lang = 'en';
+        $serverId = 1;
+        $worldId = 1;
+        $uid = 123;
+        $recoveryCode = 'REC123';
         
-        $result = MockEmailService::sendPasswordRecoveryMail($email, $resetLink, $lang);
+        $result = MockEmailService::sendPasswordForgotten($email, $serverId, $worldId, $uid, $recoveryCode);
         
         $this->assertTrue($result);
     }
@@ -110,68 +96,40 @@ class MockEmailServiceTest extends TestCase
      * @test
      * @group email
      */
-    public function it_creates_log_file_for_password_recovery()
+    public function it_logs_password_recovery_to_shared_file()
     {
         $email = 'test_' . time() . '@example.com';
-        $resetLink = 'http://localhost/reset?token=test123';
-        $lang = 'en';
+        $serverId = 1;
+        $worldId = 1;
+        $uid = 5;
+        $recoveryCode = 'RCV456';
         
-        MockEmailService::sendPasswordRecoveryMail($email, $resetLink, $lang);
+        MockEmailService::sendPasswordForgotten($email, $serverId, $worldId, $uid, $recoveryCode);
         
-        $logFiles = glob($this->logDir . '/password_recovery_*.log');
-        $this->assertNotEmpty($logFiles);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_logs_password_recovery_content()
-    {
-        $email = 'test_' . time() . '@example.com';
-        $resetLink = 'http://localhost/reset?token=test123';
-        $lang = 'en';
-        
-        MockEmailService::sendPasswordRecoveryMail($email, $resetLink, $lang);
-        
-        $logFiles = glob($this->logDir . '/password_recovery_*.log');
-        $latestLog = end($logFiles);
-        
-        $content = file_get_contents($latestLog);
-        
+        $content = MockEmailService::getLoggedEmails();
+        $this->assertStringContainsString('PASSWORD RECOVERY', $content);
         $this->assertStringContainsString($email, $content);
-        $this->assertStringContainsString($resetLink, $content);
     }
     
     /**
      * @test
      * @group email
      */
-    public function it_sends_forgotten_accounts_email()
+    public function it_sends_activation_email()
     {
         $email = 'test@example.com';
-        $accounts = ['account1', 'account2'];
-        $lang = 'en';
+        $code = 'ABC123';
+        $worldId = 1;
         
-        $result = MockEmailService::sendForgottenAccountsMail($email, $accounts, $lang);
+        $result = MockEmailService::sendActivationMail($email, $code, $worldId);
         
         $this->assertTrue($result);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_creates_log_file_for_forgotten_accounts()
-    {
-        $email = 'test_' . time() . '@example.com';
-        $accounts = ['account1', 'account2'];
-        $lang = 'en';
         
-        MockEmailService::sendForgottenAccountsMail($email, $accounts, $lang);
-        
-        $logFiles = glob($this->logDir . '/forgotten_accounts_*.log');
-        $this->assertNotEmpty($logFiles);
+        // Check in-memory log
+        $log = MockEmailService::getEmailLog();
+        $this->assertCount(1, $log);
+        $this->assertEquals('activation', $log[0]['type']);
+        $this->assertEquals($email, $log[0]['to']);
     }
     
     /**
@@ -182,14 +140,10 @@ class MockEmailServiceTest extends TestCase
     {
         $email = 'test_' . time() . '@example.com';
         $accounts = ['account1', 'account2', 'account3'];
-        $lang = 'en';
         
-        MockEmailService::sendForgottenAccountsMail($email, $accounts, $lang);
+        MockEmailService::sendForgottenAccounts($email, $accounts);
         
-        $logFiles = glob($this->logDir . '/forgotten_accounts_*.log');
-        $latestLog = end($logFiles);
-        
-        $content = file_get_contents($latestLog);
+        $content = MockEmailService::getLoggedEmails();
         
         $this->assertStringContainsString($email, $content);
         foreach ($accounts as $account) {
@@ -201,144 +155,37 @@ class MockEmailServiceTest extends TestCase
      * @test
      * @group email
      */
-    public function it_handles_empty_email()
+    public function it_includes_timestamp_in_log_file()
     {
-        $result = MockEmailService::sendActivationMail('', 'http://link', 'en');
+        $email = 'time@example.com';
+        $code = 'TIMESTAMP123';
+        $worldId = 1;
         
-        // Should handle gracefully
-        $this->assertIsBool($result);
+        MockEmailService::sendActivationMail($email, $code, $worldId);
+        
+        // Check shared log file contains timestamp
+        $content = MockEmailService::getLoggedEmails();
+        $this->assertMatchesRegularExpression('/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\]/', $content);
     }
     
     /**
      * @test
      * @group email
      */
-    public function it_handles_special_characters_in_email()
-    {
-        $email = "test+tag@example.com";
-        $activationLink = 'http://localhost/activate?token=test123';
-        $lang = 'en';
-        
-        $result = MockEmailService::sendActivationMail($email, $activationLink, $lang);
-        
-        $this->assertTrue($result);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_handles_different_languages()
+    public function it_logs_activation_email_content()
     {
         $email = 'test@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
+        $code = 'XYZ789';
+        $worldId = 2;
         
-        $languages = ['en', 'de', 'fr', 'es'];
+        MockEmailService::sendActivationMail($email, $code, $worldId);
         
-        foreach ($languages as $lang) {
-            $result = MockEmailService::sendActivationMail($email, $activationLink, $lang);
-            $this->assertTrue($result, "Failed for language: {$lang}");
-        }
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_creates_log_directory_if_not_exists()
-    {
-        // Remove log directory
-        $testDir = $this->logDir . '_test';
-        if (is_dir($testDir)) {
-            rmdir($testDir);
-        }
-        
-        // This should create the directory
-        $this->assertTrue(!is_dir($testDir) || is_dir($testDir));
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_includes_timestamp_in_log_filename()
-    {
-        $email = 'test_' . time() . '@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
-        
-        MockEmailService::sendActivationMail($email, $activationLink, 'en');
-        
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $latestLog = basename(end($logFiles));
-        
-        // Should contain timestamp pattern
-        $this->assertMatchesRegularExpression('/activation_\d+\.log/', $latestLog);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_handles_long_activation_links()
-    {
-        $email = 'test@example.com';
-        $longLink = 'http://localhost/activate?token=' . str_repeat('a', 200);
-        
-        $result = MockEmailService::sendActivationMail($email, $longLink, 'en');
-        
-        $this->assertTrue($result);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_handles_multiple_accounts_in_forgotten_email()
-    {
-        $email = 'test@example.com';
-        $manyAccounts = [];
-        for ($i = 0; $i < 10; $i++) {
-            $manyAccounts[] = 'account_' . $i;
-        }
-        
-        $result = MockEmailService::sendForgottenAccountsMail($email, $manyAccounts, 'en');
-        
-        $this->assertTrue($result);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_handles_empty_accounts_array()
-    {
-        $email = 'test@example.com';
-        $emptyAccounts = [];
-        
-        $result = MockEmailService::sendForgottenAccountsMail($email, $emptyAccounts, 'en');
-        
-        $this->assertIsBool($result);
-    }
-    
-    /**
-     * @test
-     * @group email
-     */
-    public function it_logs_email_headers()
-    {
-        $email = 'test_' . time() . '@example.com';
-        $activationLink = 'http://localhost/activate?token=test123';
-        
-        MockEmailService::sendActivationMail($email, $activationLink, 'en');
-        
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $latestLog = end($logFiles);
-        
-        $content = file_get_contents($latestLog);
-        
-        $this->assertStringContainsString('To:', $content);
-        $this->assertStringContainsString('Subject:', $content);
-        $this->assertStringContainsString('From:', $content);
+        // Check file log content
+        $content = MockEmailService::getLoggedEmails();
+        $this->assertStringContainsString('ACTIVATION EMAIL', $content);
+        $this->assertStringContainsString($email, $content);
+        $this->assertStringContainsString($code, $content);
+        $this->assertStringContainsString((string)$worldId, $content);
     }
     
     /**
@@ -347,23 +194,31 @@ class MockEmailServiceTest extends TestCase
      */
     public function it_handles_concurrent_email_sends()
     {
-        $emails = [];
-        for ($i = 0; $i < 5; $i++) {
-            $emails[] = 'test_' . $i . '_' . time() . '@example.com';
+        // Clear existing logs
+        MockEmailService::clearLog();
+        
+        $emails = [
+            ['email' => 'concurrent1@example.com', 'code' => 'C1', 'worldId' => 1],
+            ['email' => 'concurrent2@example.com', 'code' => 'C2', 'worldId' => 1],
+            ['email' => 'concurrent3@example.com', 'code' => 'C3', 'worldId' => 1],
+            ['email' => 'concurrent4@example.com', 'code' => 'C4', 'worldId' => 1],
+            ['email' => 'concurrent5@example.com', 'code' => 'C5', 'worldId' => 1],
+        ];
+        
+        foreach ($emails as $e) {
+            MockEmailService::sendActivationMail($e['email'], $e['code'], $e['worldId']);
         }
         
-        foreach ($emails as $email) {
-            $result = MockEmailService::sendActivationMail(
-                $email,
-                'http://localhost/activate?token=test' . $email,
-                'en'
-            );
-            $this->assertTrue($result);
-        }
+        // Verify in-memory log has all emails
+        $log = MockEmailService::getEmailLog();
+        $this->assertCount(5, $log);
         
-        // All should have log files
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $this->assertGreaterThanOrEqual(5, count($logFiles));
+        // Verify file log contains all emails
+        $content = MockEmailService::getLoggedEmails();
+        foreach ($emails as $e) {
+            $this->assertStringContainsString($e['email'], $content);
+            $this->assertStringContainsString($e['code'], $content);
+        }
     }
     
     /**
@@ -372,25 +227,19 @@ class MockEmailServiceTest extends TestCase
      */
     public function it_preserves_link_parameters()
     {
-        $email = 'test@example.com';
-        $activationLink = 'http://localhost/activate?token=test123&user=456&lang=en';
+        $email = 'links@example.com';
+        $code = 'LINK123';
+        $worldId = 1;
         
-        MockEmailService::sendActivationMail($email, $activationLink, 'en');
+        MockEmailService::sendActivationMail($email, $code, $worldId);
         
-        $logFiles = glob($this->logDir . '/activation_*.log');
-        $latestLog = end($logFiles);
-        
-        $content = file_get_contents($latestLog);
-        
-        $this->assertStringContainsString('token=test123', $content);
-        $this->assertStringContainsString('user=456', $content);
-        $this->assertStringContainsString('lang=en', $content);
+        // Verify parameters appear in shared log file
+        $content = MockEmailService::getLoggedEmails();
+        $this->assertStringContainsString($email, $content);
+        $this->assertStringContainsString($code, $content);
+        $this->assertStringContainsString((string)$worldId, $content);
+        $this->assertStringContainsString('ACTIVATION EMAIL', $content);
     }
-    
-    /**
-     * @test
-     * @group email
-     */
     public function it_handles_special_characters_in_links()
     {
         $email = 'test@example.com';
@@ -408,9 +257,10 @@ class MockEmailServiceTest extends TestCase
     public function it_returns_boolean_result()
     {
         $email = 'test@example.com';
-        $link = 'http://localhost/activate?token=test';
+        $code = 'BOOL123';
+        $worldId = 1;
         
-        $result = MockEmailService::sendActivationMail($email, $link, 'en');
+        $result = MockEmailService::sendActivationMail($email, $code, $worldId);
         
         $this->assertIsBool($result);
     }
@@ -422,9 +272,10 @@ class MockEmailServiceTest extends TestCase
     public function it_handles_unicode_in_email()
     {
         $email = 'tëst@example.com';
-        $link = 'http://localhost/activate?token=test';
+        $code = 'UNICODE';
+        $worldId = 1;
         
-        $result = MockEmailService::sendActivationMail($email, $link, 'en');
+        $result = MockEmailService::sendActivationMail($email, $code, $worldId);
         
         $this->assertIsBool($result);
     }

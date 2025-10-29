@@ -1,0 +1,1 @@
+chore: docs guardrails, link-check config, quality tools, and guarded script

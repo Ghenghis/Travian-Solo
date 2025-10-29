@@ -1,0 +1,5 @@
+docs(stage2): add DEPLOYMENT.md and CHANGELOG.md (Keep a Changelog)
+
+- docs/DEPLOYMENT.md: dev/prod steps, rollback, verification checklist
+- docs/CHANGELOG.md: initial entries and guardrails summary
+- Non-destructive docs-first update per Stage 2

@@ -5,7 +5,7 @@
  */
 
 // Start session for CSRF testing
-if (session_status() === PHP_STATUS_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -70,6 +70,9 @@ spl_autoload_register(function ($class) {
 // Load global config for database constants
 require_once BASE_PATH . '/sections/globalConfig.php';
 
-echo "✓ Test bootstrap loaded - using REAL production codebase\n";
-echo "✓ Environment: " . getenv('APP_ENV') . "\n";
-echo "✓ Base path: " . BASE_PATH . "\n\n";
+// Load global helper functions used by namespaced classes (e.g., get_random_string)
+if (file_exists(BASE_PATH . '/sections/api/include/functions.php')) {
+    require_once BASE_PATH . '/sections/api/include/functions.php';
+}
+
+// Debug output removed to keep headers intact during tests

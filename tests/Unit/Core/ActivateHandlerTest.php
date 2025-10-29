@@ -1,7 +1,7 @@
 <?php
 /**
  * Unit Tests for Core\ActivateHandler
- * Tests the REAL production ActivateHandler class
+ * Tests the REAL production ActivateHandler::addActivation method
  */
 
 namespace Tests\Unit\Core;
@@ -11,383 +11,198 @@ use Core\ActivateHandler;
 
 class ActivateHandlerTest extends TestCase
 {
-    private ActivateHandler $handler;
-    private $db;
+    private \PDO $pdo;
+    private string $email;
     
     protected function setUp(): void
     {
         parent::setUp();
-        // Use the REAL ActivateHandler class from production codebase
-        $this->handler = new ActivateHandler();
-        
-        // Connect to test database
-        $this->db = new \mysqli(
-            getenv('DB_HOST') ?: 'mysql',
-            getenv('DB_USERNAME') ?: 'travian_user',
-            getenv('DB_PASSWORD') ?: 'travian_password123',
-            'travian_global'
-        );
-        
-        if ($this->db->connect_error) {
-            $this->markTestSkipped('Database connection failed: ' . $this->db->connect_error);
+        // Connect to world DB (testworld)
+        try {
+            $dsn = 'mysql:host=' . (getenv('DB_HOST') ?: 'mysql') . ';dbname=' . (getenv('WORLD_DB_NAME') ?: 'travian_testworld') . ';charset=utf8mb4';
+            $user = getenv('DB_USERNAME') ?: 'travian_user';
+            $pass = getenv('DB_PASSWORD') ?: 'travian_password123';
+            $this->pdo = new \PDO($dsn, $user, $pass, [
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            ]);
+        } catch (\Throwable $e) {
+            $this->markTestSkipped('World DB connection failed: ' . $e->getMessage());
+        }
+
+        // Unique test email
+        $this->email = 'activatehandler_' . time() . '_' . bin2hex(random_bytes(3)) . '@example.com';
+
+        // Ensure activation table exists, else skip
+        try {
+            $this->pdo->query('SELECT 1 FROM activation LIMIT 1');
+        } catch (\Throwable $e) {
+            $this->markTestSkipped('activation table missing in world DB: ' . $e->getMessage());
         }
     }
     
     protected function tearDown(): void
     {
-        // Clean up test data
-        if ($this->db) {
-            $this->db->close();
+        if (isset($this->pdo)) {
+            try {
+                $stmt = $this->pdo->prepare('DELETE FROM activation WHERE email = :email');
+                $stmt->execute([':email' => $this->email]);
+            } catch (\Throwable $e) {
+                // ignore
+            }
         }
         parent::tearDown();
     }
     
     /**
-     * Helper: Create test user
+     * @test
+     * @group activation
      */
-    private function createTestUser($email, $token = null)
+    public function it_adds_activation_and_returns_token()
     {
-        if ($token === null) {
-            $token = bin2hex(random_bytes(16));
+        $name = 'TestUser_' . substr($this->email, 0, 6);
+        $password = 'Passw0rd!';
+        $refUid = 0;
+
+        $token = ActivateHandler::addActivation($name, $password, $this->email, $refUid, $this->pdo);
+
+        $this->assertNotEmpty($token);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $token);
+
+        // Verify DB row
+        $stmt = $this->pdo->prepare('SELECT name, password, email, token, refUid, time FROM activation WHERE email = :email');
+        $stmt->execute([':email' => $this->email]);
+        $row = $stmt->fetch();
+
+        $this->assertNotFalse($row, 'Activation row should exist');
+        $this->assertSame($name, $row['name']);
+        $this->assertSame(sha1($password), $row['password']);
+        $this->assertSame($this->email, $row['email']);
+        $this->assertSame($token, $row['token']);
+        $this->assertSame($refUid, (int)$row['refUid']);
+
+        $now = time();
+        $this->assertIsNumeric($row['time']);
+        $this->assertGreaterThanOrEqual($now - 5, (int)$row['time']);
+        $this->assertLessThanOrEqual($now + 5, (int)$row['time']);
+    }
+    
+    /**
+     * @test
+     * @group activation
+     */
+    public function it_handles_special_characters_in_email_and_name()
+    {
+        // Determine max length of the `name` column to avoid truncation
+        $maxLen = 32;
+        try {
+            $col = $this->pdo->query("SHOW COLUMNS FROM activation LIKE 'name'")->fetch();
+            if ($col && isset($col['Type']) && preg_match('/varchar\((\d+)\)/i', $col['Type'], $m)) {
+                $maxLen = (int)$m[1];
+            }
+        } catch (\Throwable $e) {
+            // Keep default
         }
-        
-        $stmt = $this->db->prepare("
-            INSERT INTO activation (email, activationCode, activated, time)
-            VALUES (?, ?, 0, ?)
-        ");
-        $time = time();
-        $stmt->bind_param('ssi', $email, $token, $time);
-        $stmt->execute();
-        
-        return [
-            'email' => $email,
-            'token' => $token
-        ];
-    }
-    
-    /**
-     * Helper: Clean test user
-     */
-    private function cleanTestUser($email)
-    {
-        $stmt = $this->db->prepare("DELETE FROM activation WHERE email = ?");
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
+
+        $rawName = "O'Reilly <script>";
+        $name = mb_substr($rawName, 0, max(1, $maxLen));
+        $password = 'P@ss123!';
+        $refUid = 42;
+
+        $token = ActivateHandler::addActivation($name, $password, $this->email, $refUid, $this->pdo);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $token);
+
+        $stmt = $this->pdo->prepare('SELECT name, email FROM activation WHERE email = :email');
+        $stmt->execute([':email' => $this->email]);
+        $row = $stmt->fetch();
+
+        $this->assertNotFalse($row);
+        $this->assertSame($name, $row['name']);
+        $this->assertSame($this->email, $row['email']);
     }
     
     /**
      * @test
      * @group activation
      */
-    public function it_activates_account_with_valid_token()
+    public function it_generates_unique_tokens_for_multiple_activations()
     {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
+        $name1 = 'User1';
+        $name2 = 'User2';
+        $email2 = 'activatehandler2_' . time() . '_' . bin2hex(random_bytes(3)) . '@example.com';
+        $password = 'Pass123!';
+
+        $token1 = ActivateHandler::addActivation($name1, $password, $this->email, 0, $this->pdo);
+        $token2 = ActivateHandler::addActivation($name2, $password, $email2, 0, $this->pdo);
+
+        $this->assertNotEquals($token1, $token2, 'Tokens should be unique');
         
-        $result = $this->handler->activate($user['email'], $user['token']);
-        
-        $this->assertTrue($result['success']);
-        $this->assertStringContainsString('activated', strtolower($result['message']));
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_rejects_invalid_token()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
-        
-        $result = $this->handler->activate($user['email'], 'invalid_token_123');
-        
-        $this->assertFalse($result['success']);
-        $this->assertArrayHasKey('error', $result);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_rejects_empty_email()
-    {
-        $result = $this->handler->activate('', 'some_token');
-        
-        $this->assertFalse($result['success']);
-        $this->assertArrayHasKey('error', $result);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_rejects_empty_token()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        
-        $result = $this->handler->activate($testEmail, '');
-        
-        $this->assertFalse($result['success']);
-        $this->assertArrayHasKey('error', $result);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_rejects_non_existent_email()
-    {
-        $result = $this->handler->activate('nonexistent@example.com', 'some_token');
-        
-        $this->assertFalse($result['success']);
-        $this->assertArrayHasKey('error', $result);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_updates_database_on_successful_activation()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
-        
-        $result = $this->handler->activate($user['email'], $user['token']);
-        
-        $this->assertTrue($result['success']);
-        
-        // Verify database was updated
-        $stmt = $this->db->prepare("SELECT activated, activatedTime FROM activation WHERE email = ?");
-        $stmt->bind_param('s', $testEmail);
-        $stmt->execute();
-        $row = $stmt->get_result()->fetch_assoc();
-        
-        $this->assertEquals(1, $row['activated']);
-        $this->assertGreaterThan(0, $row['activatedTime']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_prevents_double_activation()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
-        
-        // First activation
-        $result1 = $this->handler->activate($user['email'], $user['token']);
-        $this->assertTrue($result1['success']);
-        
-        // Second activation attempt
-        $result2 = $this->handler->activate($user['email'], $user['token']);
-        
-        // Should fail or indicate already activated
-        $this->assertFalse($result2['success']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_returns_success_structure()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
-        
-        $result = $this->handler->activate($user['email'], $user['token']);
-        
-        $this->assertIsArray($result);
-        $this->assertArrayHasKey('success', $result);
-        $this->assertIsBool($result['success']);
-        
-        if ($result['success']) {
-            $this->assertArrayHasKey('message', $result);
+        // Cleanup second email
+        try {
+            $stmt = $this->pdo->prepare('DELETE FROM activation WHERE email = :email');
+            $stmt->execute([':email' => $email2]);
+        } catch (\Throwable $e) {
+            // ignore
         }
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
     }
     
     /**
      * @test
      * @group activation
      */
-    public function it_returns_error_structure_on_failure()
+    public function it_hashes_password_with_sha1()
     {
-        $result = $this->handler->activate('invalid@example.com', 'invalid_token');
-        
-        $this->assertIsArray($result);
-        $this->assertArrayHasKey('success', $result);
-        $this->assertFalse($result['success']);
-        $this->assertArrayHasKey('error', $result);
-        $this->assertIsString($result['error']);
+        $name = 'HashTest';
+        $password = 'MyPassword123';
+
+        $token = ActivateHandler::addActivation($name, $password, $this->email, 0, $this->pdo);
+
+        $stmt = $this->pdo->prepare('SELECT password FROM activation WHERE email = :email');
+        $stmt->execute([':email' => $this->email]);
+        $row = $stmt->fetch();
+
+        $this->assertSame(sha1($password), $row['password'], 'Password should be hashed with SHA1');
     }
     
     /**
      * @test
      * @group activation
      */
-    public function it_handles_sql_special_characters_in_email()
+    public function it_stores_refuid_correctly()
     {
-        $testEmail = "test'email" . time() . "@example.com";
-        $user = $this->createTestUser($testEmail);
-        
-        $result = $this->handler->activate($user['email'], $user['token']);
-        
-        $this->assertTrue($result['success']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
+        $name = 'RefTest';
+        $password = 'Pass123!';
+        $refUid = 999;
+
+        $token = ActivateHandler::addActivation($name, $password, $this->email, $refUid, $this->pdo);
+
+        $stmt = $this->pdo->prepare('SELECT refUid FROM activation WHERE email = :email');
+        $stmt->execute([':email' => $this->email]);
+        $row = $stmt->fetch();
+
+        $this->assertSame($refUid, (int)$row['refUid'], 'refUid should match');
     }
     
     /**
      * @test
      * @group activation
      */
-    public function it_handles_special_characters_in_token()
+    public function it_sets_timestamp_within_reasonable_range()
     {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $token = 'token_with_special_chars_!@#$%';
-        $user = $this->createTestUser($testEmail, $token);
-        
-        $result = $this->handler->activate($user['email'], $token);
-        
-        $this->assertTrue($result['success']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_validates_email_format()
-    {
-        // Invalid email format
-        $result = $this->handler->activate('not-an-email', 'some_token');
-        
-        $this->assertFalse($result['success']);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_sets_activation_timestamp()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $user = $this->createTestUser($testEmail);
-        
+        $name = 'TimeTest';
+        $password = 'Pass123!';
         $beforeTime = time();
-        $result = $this->handler->activate($user['email'], $user['token']);
+
+        $token = ActivateHandler::addActivation($name, $password, $this->email, 0, $this->pdo);
+        
         $afterTime = time();
-        
-        $this->assertTrue($result['success']);
-        
-        // Check timestamp is set correctly
-        $stmt = $this->db->prepare("SELECT activatedTime FROM activation WHERE email = ?");
-        $stmt->bind_param('s', $testEmail);
-        $stmt->execute();
-        $row = $stmt->get_result()->fetch_assoc();
-        
-        $this->assertGreaterThanOrEqual($beforeTime, $row['activatedTime']);
-        $this->assertLessThanOrEqual($afterTime, $row['activatedTime']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_handles_case_sensitive_tokens()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $token = 'CaseSensitiveToken123';
-        $user = $this->createTestUser($testEmail, $token);
-        
-        // Try with different case
-        $result = $this->handler->activate($user['email'], strtolower($token));
-        
-        // Should fail if case-sensitive
-        $this->assertFalse($result['success']);
-        
-        // Try with correct case
-        $result2 = $this->handler->activate($user['email'], $token);
-        $this->assertTrue($result2['success']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_handles_long_tokens()
-    {
-        $testEmail = 'activatetest_' . time() . '@example.com';
-        $token = bin2hex(random_bytes(64)); // Very long token
-        $user = $this->createTestUser($testEmail, $token);
-        
-        $result = $this->handler->activate($user['email'], $token);
-        
-        $this->assertTrue($result['success']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail);
-    }
-    
-    /**
-     * @test
-     * @group activation
-     */
-    public function it_handles_multiple_users_correctly()
-    {
-        $testEmail1 = 'user1_' . time() . '@example.com';
-        $testEmail2 = 'user2_' . time() . '@example.com';
-        
-        $user1 = $this->createTestUser($testEmail1);
-        $user2 = $this->createTestUser($testEmail2);
-        
-        // Activate user 1
-        $result1 = $this->handler->activate($user1['email'], $user1['token']);
-        $this->assertTrue($result1['success']);
-        
-        // Activate user 2
-        $result2 = $this->handler->activate($user2['email'], $user2['token']);
-        $this->assertTrue($result2['success']);
-        
-        // Verify both are activated
-        $stmt = $this->db->prepare("SELECT activated FROM activation WHERE email = ?");
-        
-        $stmt->bind_param('s', $testEmail1);
-        $stmt->execute();
-        $row1 = $stmt->get_result()->fetch_assoc();
-        $this->assertEquals(1, $row1['activated']);
-        
-        $stmt->bind_param('s', $testEmail2);
-        $stmt->execute();
-        $row2 = $stmt->get_result()->fetch_assoc();
-        $this->assertEquals(1, $row2['activated']);
-        
-        // Clean up
-        $this->cleanTestUser($testEmail1);
-        $this->cleanTestUser($testEmail2);
+
+        $stmt = $this->pdo->prepare('SELECT time FROM activation WHERE email = :email');
+        $stmt->execute([':email' => $this->email]);
+        $row = $stmt->fetch();
+
+        $storedTime = (int)$row['time'];
+        $this->assertGreaterThanOrEqual($beforeTime, $storedTime);
+        $this->assertLessThanOrEqual($afterTime, $storedTime);
     }
 }

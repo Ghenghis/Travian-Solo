@@ -14,8 +14,8 @@ $connection = [
     'database' => [
         'hostname' => 'localhost',
         'username' => 'root',
-        'password' => '',
-        'database' => 'a2b',
+        'password' => 'root123',
+        'database' => 'travian_dev',
         'charset' => 'utf8mb4',
     ],
 ];

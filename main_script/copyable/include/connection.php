@@ -12,10 +12,10 @@ $connection = [
     'auto_reinstall_start_after' => '[AUTO_REINSTALL_START_AFTER]',
     'engine_filename' => '[ENGINE_FILENAME]',
     'database' => [
-        'hostname' => '[DATABASE_HOST]',
-        'username' => '[DATABASE_USERNAME]',
-        'password' => '[DATABASE_PASSWORD]',
-        'database' => '[DATABASE_DATABASE]',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => 'root123',
+        'database' => 'travian',
         'charset' => 'utf8mb4',
     ],
 ];
