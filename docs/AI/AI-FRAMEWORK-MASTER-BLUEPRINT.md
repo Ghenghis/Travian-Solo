@@ -251,14 +251,16 @@ pip install \
     python-dotenv==1.0.0
 
 # 4. Database Setup (1 hour)
-# PostgreSQL for global data
+# MySQL for global data
 docker run -d \
-    --name travian-postgres \
-    -e POSTGRES_PASSWORD=your_secure_password \
-    -e POSTGRES_DB=travian_global \
-    -p 5432:5432 \
-    -v pgdata:/var/lib/postgresql/data \
-    postgres:15-alpine
+    --name travian-mysql \
+    -e MYSQL_ROOT_PASSWORD=your_secure_password \
+    -e MYSQL_DATABASE=travian_global \
+    -e MYSQL_USER=travian_user \
+    -e MYSQL_PASSWORD=your_password \
+    -p 3306:3306 \
+    -v mysqldata:/var/lib/mysql \
+    mysql:8.0
 
 # Redis for caching
 docker run -d \
@@ -270,7 +272,7 @@ docker run -d \
 # 5. Verify Installation (30 minutes)
 python3 -c "import torch; print(f'PyTorch CUDA: {torch.cuda.is_available()}')"
 python3 -c "import vllm; print('vLLM installed')"
-psql postgresql://localhost:5432/travian_global -c "SELECT version();"
+mysql -h 127.0.0.1 -P 3306 -u travian_user -p travian_global -e "SELECT VERSION();"
 redis-cli ping
 ```
 
@@ -279,7 +281,7 @@ redis-cli ping
 - [ ] CUDA installed and GPUs detected
 - [ ] Python 3.11 virtual environment created
 - [ ] All dependencies installed without errors
-- [ ] PostgreSQL accessible
+- [ ] MySQL accessible
 - [ ] Redis accessible
 - [ ] GPU accessible from Python (`torch.cuda.is_available()` returns True)
 

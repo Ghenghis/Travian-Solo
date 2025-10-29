@@ -57,7 +57,7 @@ This documentation set provides complete instructions for deploying TravianT4.6 
 
 ### Database Architecture
 
-1. **Global Database** (PostgreSQL on Replit or MySQL for production)
+1. **Global Database** (MySQL)
    - `gameServers` - Server configurations
    - `activation` - User registrations
    - `configurations` - Global settings

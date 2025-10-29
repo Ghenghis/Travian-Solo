@@ -167,9 +167,9 @@ python -m vllm.entrypoints.openai.api_server \
     --model mistralai/Mistral-7B-Instruct-v0.2 \
     --gpu-memory-utilization 0.9
 
-# 2. Create AI databases (PostgreSQL)
-createdb travian_ai
-psql travian_ai < AI-Framework/DATA-MODELS-ARCHITECTURE.md
+# 2. Create AI database (MySQL)
+mysql -e "CREATE DATABASE IF NOT EXISTS travian_ai CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+mysql travian_ai < AI-Framework/DATA-MODELS-ARCHITECTURE.md
 
 # 3. Set up Redis for caching
 docker run -d -p 6379:6379 redis:latest

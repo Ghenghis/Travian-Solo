@@ -94,11 +94,11 @@ Note: The `docs/AI/` folder is reserved for future AI integration and remains un
 
 ### ⚠️ CRITICAL - Fix Broken Code (Must Do First)
 
-These guides fix the BROKEN MySQL/PostgreSQL architecture:
+These guides establish the MySQL baseline and core functionality:
 
 | File | Purpose | Time | Priority |
 |------|---------|------|----------|
-| [FIX-01-MYSQL-CONVERSION.md](FIX-01-MYSQL-CONVERSION.md) | Convert from PostgreSQL to MySQL | 2h | CRITICAL |
+| [FIX-01-MYSQL-CONVERSION.md](FIX-01-MYSQL-CONVERSION.md) | Establish and verify MySQL schema baseline | 2h | CRITICAL |
 | [FIX-02-GAME-WORLD-SETUP.md](FIX-02-GAME-WORLD-SETUP.md) | Create game databases (90+ tables) | 3h | CRITICAL |
 | [FIX-03-LOGIN-REGISTRATION-TESTING.md](FIX-03-LOGIN-REGISTRATION-TESTING.md) | Test and verify user flows | 2h | CRITICAL |
 
@@ -140,13 +140,13 @@ Complete guides for deploying to production with Docker:
 ## 🎯 Current Project Status
 
 ### ✅ What's Working
-- PostgreSQL global database (on Replit)
+- MySQL database baseline (Docker)
 - User registration saves data
 - API endpoints respond
 - Angular frontend loads
 
 ### ❌ What's Broken (MUST FIX)
-- **Database Architecture**: PostgreSQL vs MySQL conflict
+- **Database Architecture**: Ensure all components use MySQL only and schema is fully imported
 - **Login System**: Game world databases don't exist
 - **90+ Game Tables**: Not created
 - **Game World Configs**: Missing connection.php files
@@ -238,7 +238,7 @@ php test-complete-flow.php
 ### If You Want to Deploy Quickly
 1. **Focus on Critical Fixes only** (FIX-01, 02, 03)
 2. Skip Docker/monitoring for now
-3. Use Replit or simple PHP server
+3. Use Docker or simple PHP server
 4. **Time**: ~8 hours
 
 ### If You Want Production-Grade Deployment
@@ -259,7 +259,7 @@ php test-complete-flow.php
 
 You're ready for production when:
 
-- [ ] MySQL database (NOT PostgreSQL)
+- [ ] MySQL database
 - [ ] Global database with all tables
 - [ ] Game world databases (90+ tables each)
 - [ ] Registration works end-to-end
@@ -291,16 +291,14 @@ You're ready for production when:
 ## 📌 Important Notes
 
 ### This is a MySQL Project
-- ⚠️ **NOT PostgreSQL** (despite current Replit setup)
-- Must convert to MySQL for production
+- Must use MySQL for production
 - All documentation assumes MySQL
 
 ### Database Architecture
 - **1 Global Database**: User registration, server list
 - **Multiple World Databases**: Each game world has own database with 90+ tables
 
-### Required External Services
-- **MySQL Database**: External or Docker (Replit only has PostgreSQL)
+- **MySQL Database**: Docker (default) or external
 - **SMTP Server**: For emails (Gmail, SendGrid, etc.)
 - **Redis** (optional): For caching and sessions
 
@@ -310,7 +308,7 @@ You're ready for production when:
 
 👉 **Begin with**: [FIX-01-MYSQL-CONVERSION.md](FIX-01-MYSQL-CONVERSION.md)
 
-This will convert the project from PostgreSQL to MySQL, which is the foundation for everything else.
+This initializes and verifies the MySQL schema baseline needed for everything else.
 
 ---
 

@@ -2,6 +2,51 @@
 
 Production-ready PHP backend with Dockerized services, PHPUnit test suite, and enterprise-grade cleanup and documentation.
 
+![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php)
+![MySQL](https://img.shields.io/badge/DB-MySQL_8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+[![Stars](https://img.shields.io/github/stars/Ghenghis/Travian-Solo?style=for-the-badge)](https://github.com/Ghenghis/Travian-Solo/stargazers)
+[![License](https://img.shields.io/github/license/Ghenghis/Travian-Solo?style=for-the-badge)](LICENSE)
+
+> Build. Expand. Conquer. A clean, modern backend for solo‑play Travian with a clear path to intelligent AI factions.
+
+---
+
+## ✨ Feature Highlights
+
+- Clean root structure, guarded scripts, and comprehensive docs
+- Dockerized stack (Nginx + PHP‑FPM + MySQL + Redis)
+- PHPUnit test suite with isolated header tests
+- Lint and quality tools wired (PHPCS, PHP‑CS‑Fixer, PHPStan, PHPMD)
+- Future‑ready AI/NPC roadmap and visuals in `docs/AI/`
+
+### Visual Overview
+
+```mermaid
+flowchart LR
+  Client[Browser / Frontend]
+  Nginx[Nginx]
+  PHP[PHP-FPM API]
+  DB[(MySQL\nGlobal + Worlds)]
+  Redis[(Redis Cache)]
+  Mail[Mail Service]
+
+  Client --> Nginx
+  Nginx --> PHP
+  PHP --> DB
+  PHP --> Redis
+  PHP --> Mail
+```
+
+### Game Modes (Planned)
+
+| Mode | Description |
+|------|-------------|
+| Human vs World | Single human vs many AI factions |
+| Co‑op Allies | Human with AI teammates vs others |
+| Betrayal Season | Trust dynamics and betrayals over time |
+| Wonder Rush | Race to late‑game objectives |
+
 ## Overview
 
 - PHP 8.2 runtime (Dockerized)

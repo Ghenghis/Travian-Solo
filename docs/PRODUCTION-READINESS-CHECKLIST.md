@@ -14,12 +14,12 @@ This document provides a complete file-by-file analysis of what's broken and wha
 
 ### 1. Database Architecture Mismatch ❌
 
-**Problem**: Global DB uses PostgreSQL, Game Worlds expect MySQL - incompatible
+**Problem**: Ensure a consistent MySQL architecture for both Global and Per‑World databases
 
 **Files Affected**:
-- `sections/api/include/Database/DB.php` - Currently PostgreSQL
-- `sections/api/include/Database/ServerDB.php` - Expects MySQL
-- `sections/globalConfig.php` - Points to PostgreSQL
+- `sections/api/include/Database/DB.php` - Must use MySQL DSN
+- `sections/api/include/Database/ServerDB.php` - MySQL DSN
+- `sections/globalConfig.php` - MySQL settings
 
 **Required Fix**:
 ```php
@@ -109,7 +109,7 @@ SOURCE main_script/include/schema/T4.4.sql;
 
 **Problem**: Global database missing critical tables
 
-**Existing Tables** (in Replit PostgreSQL):
+**Required Global Tables** (MySQL):
 - ✅ `gameServers`
 - ✅ `activation`
 - ✅ `configurations`
@@ -118,14 +118,13 @@ SOURCE main_script/include/schema/T4.4.sql;
 - ✅ `mailserver`
 - ✅ `passwordRecovery`
 
-**Missing Tables in MySQL Version**:
-When you migrate to MySQL, these need to be recreated:
+**Missing Tables** (create in MySQL):
 - ❌ All the above tables in MySQL format
 - ❌ `newsletter` - Email campaigns
 - ❌ `payment_log` - Payment tracking
 - ❌ `voting` - External voting sites
 
-**Required Fix**: Convert `main.sql` PostgreSQL schema to MySQL
+**Required Fix**: Import the MySQL schema (`database/main.sql`) and verify
 
 **Status**: ⏳ PENDING
 **Priority**: CRITICAL - Blocks registration/login
@@ -158,18 +157,9 @@ WHERE worldId = 'testworld';
 
 ---
 
-### 6. Column Name Case Sensitivity Issues ❌
+### 6. Column Name Case Sensitivity Checks
 
-**Problem**: PostgreSQL returns lowercase, code expects camelCase
-
-**Affected Files**:
-- `sections/api/include/Api/Ctrl/ServersCtrl.php` - ✅ FIXED (has mapping)
-- `sections/api/include/Api/Ctrl/RegisterCtrl.php` - ✅ FIXED (has mapping)
-- `sections/api/include/Core/Server.php` - ✅ FIXED (has mapColumnNames)
-
-**Status**: ✅ MOSTLY FIXED (but will be irrelevant once migrated to MySQL)
-**Priority**: CRITICAL (only for PostgreSQL)
-**Estimated Time**: N/A (already fixed for current setup)
+**Note**: Not applicable for MySQL defaults. Keep explicit column names in queries for consistency.
 
 ---
 
@@ -380,7 +370,7 @@ sections/api/include/Core/Encryption.php   ❌ NOT CREATED
 ## PRODUCTION READINESS SUMMARY
 
 ### What's Working ✅
-1. ✅ PostgreSQL global database (for Replit)
+1. ✅ MySQL global database (Docker or external)
 2. ✅ User registration saves data
 3. ✅ API endpoints respond with JSON
 4. ✅ Angular frontend loads
@@ -389,7 +379,7 @@ sections/api/include/Core/Encryption.php   ❌ NOT CREATED
 
 ### What's Broken ❌
 1. ❌ Login system (no game world databases)
-2. ❌ Database architecture (PostgreSQL vs MySQL mismatch)
+2. ❌ Database architecture (ensure all components use MySQL)
 3. ❌ Game world configurations missing
 4. ❌ Email system not configured
 5. ❌ Background workers not running
@@ -436,8 +426,8 @@ sections/api/include/Core/Encryption.php   ❌ NOT CREATED
 
 ## Immediate Next Steps (Priority Order)
 
-1. **DECIDE**: MySQL strategy (external service vs local install)
-2. **CREATE**: External MySQL database OR install MySQL in Replit
+1. **DECIDE**: MySQL strategy (Docker default vs external service)
+2. **CREATE**: MySQL database (Docker default)
 3. **IMPORT**: Database schemas (global + game worlds)
 4. **CREATE**: Game world connection.php files
 5. **UPDATE**: DB.php to use MySQL
@@ -505,7 +495,7 @@ sections/api/include/Core/Encryption.php   ❌ NOT CREATED
 **DO NOT DEPLOY TO PRODUCTION** until at least all CRITICAL and HIGH priority issues are resolved.
 
 Current codebase is suitable for:
-- ✅ Development/testing on Replit
+- ✅ Local Docker development/testing
 - ✅ Understanding the architecture
 - ❌ Production deployment
 

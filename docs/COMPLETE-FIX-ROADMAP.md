@@ -14,7 +14,7 @@ This document provides the **master checklist** for taking TravianT4.6 from curr
 ## Quick Navigation
 
 ### Phase 1: Critical Database & Core Functionality (8-10 hours)
-- [FIX-01-MYSQL-CONVERSION.md](FIX-01-MYSQL-CONVERSION.md) - Convert from PostgreSQL to MySQL
+- [FIX-01-MYSQL-CONVERSION.md](FIX-01-MYSQL-CONVERSION.md) - Establish and verify MySQL schema baseline
 - [FIX-02-GAME-WORLD-SETUP.md](FIX-02-GAME-WORLD-SETUP.md) - Create game world databases
 - [FIX-03-LOGIN-REGISTRATION-TESTING.md](FIX-03-LOGIN-REGISTRATION-TESTING.md) - Test user flows
 

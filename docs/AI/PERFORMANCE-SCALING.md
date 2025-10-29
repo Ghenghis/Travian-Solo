@@ -636,7 +636,7 @@ class PerformanceMonitor:
 
 ### **50 NPCs** (Week 1)
 - Single RTX 3090 Ti
-- PostgreSQL with basic indexes
+- MySQL with proper indexes
 - Redis for LLM caching
 - Target: <50ms avg latency
 

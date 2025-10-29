@@ -236,7 +236,7 @@ This is the **complete blueprint** for building an AI-driven solo-play Travian s
 ### **Week 1: Foundation** (8-10 hours)
 - ✅ Install vLLM on RTX 3090 Ti
 - ✅ Download Mistral-7B model
-- ✅ Set up PostgreSQL/MySQL schema
+- ✅ Set up MySQL schema
 - ✅ Create NPC manager
 - ✅ Test LLM response times
 

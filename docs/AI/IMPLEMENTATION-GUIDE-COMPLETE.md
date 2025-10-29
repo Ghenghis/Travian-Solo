@@ -157,10 +157,7 @@ CREATE INDEX idx_relationships_npc ON npc_relationships(npc_id);
 
 **Import to Travian database**:
 ```bash
-# Using Replit PostgreSQL (temporarily for development)
-psql $DATABASE_URL < scripts/create_npc_schema.sql
-
-# Or MySQL (production)
+# Import to MySQL
 mysql -h your-mysql-host -u user -p travian_global < scripts/create_npc_schema_mysql.sql
 ```
 
@@ -312,7 +309,7 @@ class NPCManager:
 # Usage example
 async def main():
     # Database URL (use your actual connection)
-    db_url = os.getenv("DATABASE_URL", "postgresql://user:pass@localhost/travian_global")
+    db_url = os.getenv("DATABASE_URL", "mysql://user:pass@localhost/travian_global")
     
     manager = NPCManager(db_url)
     

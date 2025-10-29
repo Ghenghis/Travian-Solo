@@ -17,7 +17,7 @@ Enterprise-grade database architecture for NPC AI system supporting:
 
 ```
 Database Architecture
-├── Global Database (MySQL/PostgreSQL)
+├── Global Database (MySQL)
 │   ├── NPC Profiles & Configuration
 │   ├── Player Relationships
 │   ├── Alliance Data

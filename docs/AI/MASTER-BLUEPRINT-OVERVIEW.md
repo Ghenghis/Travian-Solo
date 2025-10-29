@@ -48,7 +48,7 @@ Project structure creation
 Success metrics definition
 Phase 1: Infrastructure (Weeks 2-3)
 GPU & LLM setup (vLLM on RTX 3090 Ti + Tesla P40s)
-Database architecture (PostgreSQL + Redis)
+Database architecture (MySQL)
 API integration layer
 Multi-server failover
 Phase 2: Core AI Engine (Weeks 4-6)
