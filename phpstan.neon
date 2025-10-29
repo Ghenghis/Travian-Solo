@@ -1,0 +1,10 @@
+parameters:
+  level: 6
+  paths:
+    - sections
+  excludePaths:
+    - vendor
+    - tests
+    - _project
+    - storage
+  reportUnmatchedIgnoredErrors: false
