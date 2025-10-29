@@ -11,6 +11,27 @@
 - Ethical, explainable AI with readable difficulty scaling
 - Production‑grade ops: tests, dashboards, telemetry, replays
 
+### System Map
+
+```mermaid
+flowchart LR
+    Human(Human Player)
+    NPCs[NPC Agents (Alliance, Raider, Scout, Trader, Defender)]
+    LLM[vLLM/Ollama Inference]
+    Orchestrator[GPU Orchestrator]
+    Engine[Game Engine\n(Economy/Combat/Diplomacy)]
+    Telemetry[Prometheus/Grafana]
+    Storage[(AI Memory\n+ Telemetry DB)]
+
+    Human <---> Engine
+    NPCs --> Engine
+    Engine --> LLM
+    LLM --> Orchestrator
+    Engine --> Telemetry
+    NPCs <--> Storage
+    Engine <--> Storage
+```
+
 ## 🧭 Pillars (from the AI docs)
 - Framework: AI-FRAMEWORK-MASTER-BLUEPRINT.md, AI-Framework-Vision.md, AI-SYSTEM-COMPLETE-SUMMARY.md
 - Behavior: NPC-BEHAVIOR-SYSTEM.md, AI-NPC-OVERVIEW.md
@@ -28,7 +49,24 @@
 - Ethics/Balance: AI-ETHICS-BALANCE.md
 
 ## 🗺️ Phased Delivery Plan
+
 > Ship progress in fun, playable slices. Each phase has a clear demo and gate checks.
+
+```mermaid
+gantt
+    title AI Roadmap (High‑level)
+    dateFormat  YYYY-MM
+    section Foundations
+    Phase 0:done, p0, 2025-10, 1m
+    section Core Loop
+    Phase 1:active, p1, 2025-11, 1m
+    section Alliances
+    Phase 2: p2, 2025-12, 1m
+    section Progression
+    Phase 3: p3, 2026-01, 1m
+    section Ops & Scale
+    Phase 4: p4, 2026-02, 1m
+```
 
 ### Phase 0 — Foundations (Infra, Telemetry, Guards)
 - Local LLM serving (vLLM/Ollama), request routing, caching
@@ -83,6 +121,13 @@ Milestone Demo: 1 human vs 200 NPCs stable for 24h; insights dashboard.
 - Explainability: top actions show short reasons
 - Stability: ≥N hours without crash; memory steady
 
+### Milestone Checklist
+- [ ] P0: 10 idle NPCs with healthy telemetry
+- [ ] P1: 1 human vs 20 NPCs balanced demo
+- [ ] P2: Coordinated alliance strike with roles
+- [ ] P3: Personality + advanced strategies active
+- [ ] P4: 1 human vs 200 NPCs stable 24h
+
 ## 🧩 NPC Role Kit (starter set)
 - Scout — intel, pathing, report
 - Raider — strike, evaluate losses, target next
@@ -110,6 +155,177 @@ Milestone Demo: 1 human vs 200 NPCs stable for 24h; insights dashboard.
 - Prometheus metrics (decisions, queues, errors, latencies)
 - Grafana: NPC overview, battles, economy, diplomacy
 - Replays: compressed event logs, in‑game highlights
+
+## 🧠 NPC Decision Loop (Sequence)
+
+```mermaid
+sequenceDiagram
+    participant H as Human
+    participant N as NPC Agent
+    participant E as Game Engine
+    participant L as LLM (vLLM/Ollama)
+    participant C as Cache/Memory
+    participant T as Telemetry
+  
+    N->>E: Sense world (resources, threats, treaties)
+    E-->>N: State snapshot
+    N->>C: Retrieve last decisions + memory
+    alt Cache hit
+      C-->>N: Prior rationale + result
+      N->>E: Execute fast path
+      E->>T: Emit metrics/logs
+    else Needs new reasoning
+      N->>L: Prompt with compact state + intent
+      L-->>N: Plan + short reason (explainable)
+      N->>E: Execute plan (build/trade/scout/raid)
+      E->>C: Store memory & outcome
+      E->>T: Emit metrics/logs
+    end
+```
+
+## 🤝 Diplomacy State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Neutral
+    Neutral --> Contact: first interaction
+    Contact --> Friendly: +reputation / successful trade
+    Friendly --> Allied: treaty signed / shared ops
+    Neutral --> Wary: raids / spying / broken deals
+    Wary --> Hostile: repeated aggression
+    Hostile --> War: declared conflict
+    Allied --> Betrayal: threshold crossed
+    Betrayal --> Wary
+    War --> Truce: negotiation / exhaustion
+    Truce --> Neutral
+```
+
+## 🕸️ Multi‑Agent Coordination
+
+```mermaid
+sequenceDiagram
+    participant L as Alliance Leader
+    participant S as Scouts
+    participant R as Raiders
+    participant D as Defenders
+    participant X as Shared Intel
+  
+    L->>S: Recon targets window t0..t1
+    S-->>X: Upload sightings, garrisons, routes
+    L->>R: Assign synchronized strike (t*, paths)
+    L->>D: Pre‑position reinforcements
+    par Raiders
+      R->>X: Request latest intel, confirm paths
+      R->>R: Time sync and approach
+    and Defenders
+      D->>X: Monitor alerts, reserve stacks
+    end
+    R->>X: Post‑battle report
+    L->>All: Evaluate outcome and adjust plan
+```
+
+## 🛠 Economy / Build Pipeline
+
+```mermaid
+flowchart LR
+    Rsrc[Resources/Production] --> Need[Analyze Needs]
+    Need -->|Shortfall| Trade[Trade/Market]
+    Need -->|Sufficient| Queue[Build Queue]
+    Trade --> Convoy[Convoy Planner]
+    Queue --> Build[Construct/Upgrade]
+    Convoy --> Depot[Deliver to Depot]
+    Depot --> Build
+    Build --> Tele[Telemetry]
+```
+
+## 🚦 LLM Routing & Orchestration
+
+```mermaid
+graph TB
+    Client[NPC Decision Requests]
+    Router[Prompt Router
+    (priority, budget, cache)]
+    Fast[Inference A
+    (fast/cheap)]
+    Deep[Inference B
+    (deep/slow)]
+    Cache[(LLM Cache)]
+    
+    Client --> Router
+    Router -->|P<=3| Fast
+    Router -->|P>3 or complex| Deep
+    Router --> Cache
+    Fast --> Cache
+    Deep --> Cache
+```
+
+## 🗃 Data Model Overview (Simplified)
+
+```mermaid
+classDiagram
+    class Agent {
+      +id
+      +archetype
+      +traits
+    }
+    class Decision {
+      +id
+      +agentId
+      +type
+      +reason
+      +timestamp
+    }
+    class Memory {
+      +id
+      +agentId
+      +key
+      +value
+      +ttl
+    }
+    class Battle {
+      +id
+      +attacker
+      +defender
+      +result
+    }
+    class Treaty {
+      +id
+      +parties
+      +type
+      +status
+    }
+    class Alliance {
+      +id
+      +members
+      +plan
+    }
+    class Telemetry {
+      +metric
+      +value
+      +labels
+      +ts
+    }
+    Agent --> Decision
+    Agent --> Memory
+    Alliance o-- Agent
+    Treaty o-- Agent
+    Decision --> Telemetry
+    Battle --> Telemetry
+```
+
+## 📡 Observability Pipeline
+
+```mermaid
+flowchart LR
+    App[Game + NPCs] --> Logs[Structured Logs]
+    App --> Metrics[Prometheus Metrics]
+    Metrics --> Prom[Prometheus]
+    Logs --> Loki[Log Store]
+    Prom --> Graf[Grafana Dashboards]
+    Loki --> Graf
+    Prom --> Alert[Alertmanager]
+    Alert --> Oncall[On‑call]
+```
 
 ## 🔗 Source Map (read next)
 - AI-FRAMEWORK-MASTER-BLUEPRINT.md — end‑to‑end architecture

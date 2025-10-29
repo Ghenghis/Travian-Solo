@@ -34,6 +34,45 @@ Design for a single human to play in a living world of hundreds of AI factions â
   - Roadmap: [AI/ROADMAP.md](AI/ROADMAP.md)
   - Full AI docs: [AI/README.md](AI/README.md)
 
+### Visual Overview
+
+```mermaid
+flowchart LR
+  Human(Human Player)
+  NPCs[NPC Agents (Alliance, Raider, Scout, Trader, Defender)]
+  LLM[vLLM/Ollama Inference]
+  Orchestrator[GPU Orchestrator]
+  Engine[Game Engine\n(Economy/Combat/Diplomacy)]
+  Telemetry[Prometheus/Grafana]
+  Storage[(AI Memory\n+ Telemetry DB)]
+
+  Human <---> Engine
+  NPCs --> Engine
+  Engine --> LLM
+  LLM --> Orchestrator
+  Engine --> Telemetry
+  NPCs <--> Storage
+  Engine <--> Storage
+```
+
+### Roadmap at a Glance
+
+```mermaid
+gantt
+  title AI Roadmap (Highâ€‘level)
+  dateFormat  YYYY-MM
+  section Foundations
+  Phase 0:done, p0, 2025-10, 1m
+  section Core Loop
+  Phase 1:active, p1, 2025-11, 1m
+  section Alliances
+  Phase 2: p2, 2025-12, 1m
+  section Progression
+  Phase 3: p3, 2026-01, 1m
+  section Ops & Scale
+  Phase 4: p4, 2026-02, 1m
+```
+
 Note: The `docs/AI/` folder is reserved for future AI integration and remains unchanged during cleanup.
 
 ---
